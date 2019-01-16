@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -14,7 +17,9 @@ public class Cargo extends Subsystem {
 
   // Define variables and actuators here as private:
   // private WPI_VictorSPX cargoAngleController;
-
+  private static final WPI_VictorSPX snowBlower = new WPI_VictorSPX(4);
+  private static final WPI_TalonSRX cargoMotor1 = new WPI_TalonSRX(11);
+  private static final WPI_TalonSRX cargoMotor2 = new WPI_TalonSRX(13);
 
   public Cargo() {
     // Construct objects here
@@ -32,18 +37,33 @@ public class Cargo extends Subsystem {
 
   // All subsytem functions are defined here
 
-  public void setCargoPosition(double _angle) {
+  public static void setCargoPosition(double _angle) {
     // Moves the cargo to specific angle
 
   }
 
-  public void releaseCargo() {
+  public static void releaseCargo() {
     // Releases the cargo
+    cargoMotor1.set(0.5);
+    cargoMotor2.set(0.5);
   }
 
-  public void takeCargo() {
+  public static void takeCargo() {
     // Intakes the cargo
+    cargoMotor2.set(-0.5);
+    cargoMotor1.set(-0.5);
 
+  }
+  public static void cargoStop(){
+    snowBlower.set(0);
+    cargoMotor1.set(0);
+    cargoMotor2.set(0);
+  } 
+  public static void cargoRocketShip(){
+    snowBlower.set(-1);
+  }
+   public static void humanPlayer() {
+    snowBlower.set(1);
   }
 
 

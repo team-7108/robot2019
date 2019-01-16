@@ -21,12 +21,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // Construct OI
-    m_oi = new OI();
+   
     // Construct Subsytems
     m_cargo = new Cargo();
     m_hatch = new Hatch();
     m_climber = new Climber();
     m_driveTrain = new DriveTrain();
+    m_oi = new OI();
   }
 
   @Override
