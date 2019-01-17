@@ -4,9 +4,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.cargoJoint;
+import frc.robot.commands.closeCompressor;
 import frc.robot.commands.humanPlayer;
+import frc.robot.commands.openCompressor;
 import frc.robot.commands.releaseCargo;
+import frc.robot.commands.releaseHatch;
 import frc.robot.commands.takeCargo;
+import frc.robot.commands.takeHatch;
 
 public class OI {
 
@@ -26,12 +30,19 @@ public class OI {
     Button button1 = new JoystickButton(logitech,2); // humanPlayer 
     Button button2 = new JoystickButton(logitech,3); // releaseCargo
     Button button3 = new JoystickButton(logitech,4); // takeCargo
-
+    Button button4 = new JoystickButton(logitech,5); // open Compressor
+    Button button5 = new JoystickButton(logitech,6); // close Compressor
+    Button button6 = new JoystickButton(logitech,7); // turnOff Cylinder
+    Button button7 = new JoystickButton(logitech,8); // turnOn Cylinder
 
     button.whileHeld(new cargoJoint());
     button1.whileHeld(new humanPlayer());
     button2.whileHeld(new releaseCargo());   
     button3.whileHeld(new takeCargo());
+    button4.whenPressed(new openCompressor());
+    button5.whenPressed(new closeCompressor());
+    button6.whenPressed(new takeHatch());
+    button7.whenPressed(new releaseHatch());
 
   }
 

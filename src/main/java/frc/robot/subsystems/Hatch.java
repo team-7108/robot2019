@@ -7,17 +7,30 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Hatch extends Subsystem {
 
-
   // Define variables and actuators here as private:
   // private Compressor compressor;
+
+  private Compressor compressor;
+  private DoubleSolenoid doubleSolenoid1;
 
   public Hatch() {
     // Construct objects here
     // compressor = new Compressor(0);
+
+    compressor = new Compressor(0);
+    addChild("Compressor",compressor);
+    
+    doubleSolenoid1 = new DoubleSolenoid(0, 0, 1);
+    addChild("Double Solenoid 1",doubleSolenoid1);
+
+    
+
   }
   
   @Override
@@ -29,26 +42,26 @@ public class Hatch extends Subsystem {
   
   // Opens the compressor
   public void openCompressor() {
-
+    compressor.setClosedLoopControl(true);
   }
 
   // Closes the compressor
   public void closeCompressor() {
-
+    compressor.setClosedLoopControl(false);
   }
 
   // Emypties the cylinders
   public void turnOffCylinder() { 
-
+    doubleSolenoid1.set(DoubleSolenoid.Value.kOff);
   }
 
   // Opens the cylinders
   public void openCylinder() {
-
+    doubleSolenoid1.set(DoubleSolenoid.Value.kForward);
   }
 
   // Closes the cylinders
   public void closeCylinder() {
-
+    doubleSolenoid1.set(DoubleSolenoid.Value.kReverse);
   }
 }

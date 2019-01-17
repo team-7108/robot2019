@@ -21,11 +21,11 @@ public class DriveTrain extends Subsystem {
   // Define variables and actuators here as private:
   // private WPI_TalonSRX leftRearTalon;
 
-  private final WPI_TalonSRX driveTrainleftFrontTalon;
-  private final WPI_TalonSRX driveTrainleftRearTalon;
-  private final WPI_TalonSRX driveTrainrightFrontTalon;
-  private final WPI_TalonSRX driveTrainrightRearTalon;
-  private final RobotDrive robotDrive41 = Robot.driveTrainRobotDrive41;
+  private WPI_TalonSRX driveTrainleftFrontTalon;
+  private WPI_TalonSRX driveTrainleftRearTalon;
+  private WPI_TalonSRX driveTrainrightFrontTalon;
+  private WPI_TalonSRX driveTrainrightRearTalon;
+  private RobotDrive robotDrive41;
 
   public DriveTrain() {
     // Construct objects here
