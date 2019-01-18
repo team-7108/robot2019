@@ -1,15 +1,24 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Climber extends Subsystem {
 
   // Define variables and actuators here as private:
   // private WPI_VictorSPX rearlegExtender;
+  private WPI_TalonSRX liftMotor1;
+  private WPI_TalonSRX liftMotor2;
+  private WPI_TalonSRX liftWheelMotor;
 
   public Climber() {
     // Construct objects here
     // rearlegExtender = new WPI_VictorSPX(4);
+    liftMotor1 = new WPI_TalonSRX(11);
+    liftMotor2 = new WPI_TalonSRX(12);
+    liftWheelMotor = new WPI_TalonSRX(13);
+
   }
 
   @Override
@@ -23,26 +32,43 @@ public class Climber extends Subsystem {
 
   }
 
-    // Emypties the cylinders
-    public void turnOffCylinder() { 
+  public void extendLeg() {
+    // Extends the leg of climbing mechanism
+    liftMotor1.set(0.5);
+    liftMotor2.set(0.5);
 
-    }
-  
-    // Opens the cylinders
-    public void openCylinder() {
-  
-    }
-  
-    // Closes the cylinders
-    public void closeCylinder() {
-  
-    }
+  }
 
-    public void extendLeg() {
-      // Extends the leg of climbing mechanism
-    }
+  public void retractLeg() {
+    // Extends the leg of climbing mechanism
+    liftMotor1.set(-0.5);
+    liftMotor2.set(-0.5);
 
-    public void retractLeg() {
-      // Extends the leg of climbing mechanism
-    }
+  }
+
+  public void stopLeg(){
+
+    liftMotor1.set(0);
+    liftMotor2.set(0);
+  }
+
+  public void liftWheelForward(){
+
+    liftWheelMotor.set(0.5);
+
+  }
+
+  public void liftWheelRelease(){
+
+    liftWheelMotor.set(-0.5);
+
+  }
+
+  public void liftWheelStop(){
+
+    liftWheelMotor.set(0);
+    
+  }
+
 }
+
