@@ -11,6 +11,7 @@ import frc.robot.subsystems.Cargo;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hatch;
+import frc.robot.utils.Vision;
 
 
 public class Robot extends TimedRobot {
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
   public static Climber m_climber;
   // public static RobotDrive driveTrainRobotDrive41;
   public static DriveTrain m_driveTrain;
+  public static Vision vision;
 
   @Override
   public void robotInit() {
@@ -33,7 +35,7 @@ public class Robot extends TimedRobot {
     m_hatch = new Hatch();
     m_climber = new Climber();
     m_driveTrain = new DriveTrain();
-    
+    vision = new Vision();
     // Construct OI
     m_oi = new OI();
     

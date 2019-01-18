@@ -11,6 +11,7 @@ import frc.robot.commands.releaseCargo;
 import frc.robot.commands.releaseHatch;
 import frc.robot.commands.takeCargo;
 import frc.robot.commands.takeHatch;
+import frc.robot.commands.visionStarter;
 
 public class OI {
 
@@ -34,6 +35,9 @@ public class OI {
     Button button5 = new JoystickButton(logitech,6); // close Compressor
     Button button6 = new JoystickButton(logitech,7); // turnOff Cylinder
     Button button7 = new JoystickButton(logitech,8); // turnOn Cylinder
+    Button button8 = new JoystickButton(logitech,9); // Start vision
+
+
 
     button.whileHeld(new cargoJoint());
     button1.whileHeld(new humanPlayer());
@@ -43,7 +47,7 @@ public class OI {
     button5.whenPressed(new closeCompressor());
     button6.whenPressed(new takeHatch());
     button7.whenPressed(new releaseHatch());
-
+    button8.whenPressed(new visionStarter(5));
   }
 
   public Joystick getXbox() {
