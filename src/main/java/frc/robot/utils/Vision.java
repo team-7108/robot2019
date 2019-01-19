@@ -11,6 +11,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTableValue;
 import edu.wpi.first.networktables.TableEntryListener;
+import edu.wpi.first.vision.VisionRunner.Listener;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import frc.robot.commands.visionStarter;
 import edu.wpi.first.networktables.NetworkTable;
@@ -20,13 +21,16 @@ import edu.wpi.first.networktables.NetworkTable;
  */
 public class Vision{
     NetworkTableEntry visionStarter;
+    NetworkTableEntry angle;
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("datatable");
     public static boolean visionTrigger;
 
     public Vision() {
     visionTrigger = false;
+    angle = table.getEntry("angle");
     visionStarter = table.getEntry("visionTrigger");
+    angle.getNumber(0);
     visionStarter.setBoolean(visionTrigger);
     }
 
