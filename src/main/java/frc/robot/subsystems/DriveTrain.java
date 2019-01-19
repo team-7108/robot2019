@@ -43,12 +43,12 @@ public class DriveTrain extends Subsystem {
     driveTrainrightRearTalon = new WPI_TalonSRX(13);
     driveTrainrightRearTalon.setInverted(true);
 
-    RobotDrive driveTrainRobotDrive41 = new RobotDrive(driveTrainleftFrontTalon, driveTrainleftRearTalon,
+    robotDrive41 = new RobotDrive(driveTrainleftFrontTalon, driveTrainleftRearTalon,
         driveTrainrightFrontTalon, driveTrainrightRearTalon);
         
-        driveTrainRobotDrive41.setSafetyEnabled(false);
-        driveTrainRobotDrive41.setSensitivity(0.5);
-        driveTrainRobotDrive41.setMaxOutput(1.0);
+        robotDrive41.setSafetyEnabled(false);
+        robotDrive41.setSensitivity(0.5);
+        robotDrive41.setMaxOutput(1.0);
 
   }
 
@@ -57,6 +57,22 @@ public class DriveTrain extends Subsystem {
     Robot.m_driveTrain.setDefaultCommand(new xboxDrive());
   
   }
+  public void autonomousTurn(double speed) 
+ 	{
+ 		// if speed is - robot goes left, else right
+ 		driveTrainleftFrontTalon.set(-speed);
+ 		driveTrainrightFrontTalon.set(-speed);
+ 		driveTrainleftRearTalon.set(-speed);
+ 		driveTrainrightRearTalon.set(-speed);
+} 
+public void autonomousStop() 
+{
+  // if speed is - robot goes left, else right
+  driveTrainleftFrontTalon.set(0);
+  driveTrainrightFrontTalon.set(0);
+  driveTrainleftRearTalon.set(0);
+  driveTrainrightRearTalon.set(0);
+}
 
   @Override
   public void periodic() {

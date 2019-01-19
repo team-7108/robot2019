@@ -1,8 +1,9 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class Autonomous extends Command {
+public class Autonomous extends CommandGroup {
   public Autonomous() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -34,4 +35,7 @@ public class Autonomous extends Command {
   @Override
   protected void interrupted() {
   }
+
+public void addSequintal(ForTurnPIDTest forTurnPIDTest) {
+}
 }
