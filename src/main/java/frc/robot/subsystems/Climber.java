@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -8,16 +9,16 @@ public class Climber extends Subsystem {
 
   // Define variables and actuators here as private:
   // private WPI_VictorSPX rearlegExtender;
-  private WPI_TalonSRX liftMotor1;
+  private WPI_VictorSPX liftMotor1;
   private WPI_TalonSRX liftMotor2;
   private WPI_TalonSRX liftWheelMotor;
 
   public Climber() {
     // Construct objects here
-    // rearlegExtender = new WPI_VictorSPX(4);
-    liftMotor1 = new WPI_TalonSRX(11);
-    liftMotor2 = new WPI_TalonSRX(12);
-    liftWheelMotor = new WPI_TalonSRX(13);
+    
+    liftMotor1 = new WPI_VictorSPX(4);
+    liftMotor2 = new WPI_TalonSRX(11);
+    liftWheelMotor = new WPI_TalonSRX(12);
 
   }
 

@@ -35,13 +35,13 @@ public class DriveTrain extends Subsystem {
     driveTrainleftFrontTalon.setInverted(true);
     
     driveTrainleftRearTalon = new WPI_TalonSRX(16);
-    driveTrainleftRearTalon.setInverted(true);
+    driveTrainleftRearTalon.setInverted(false);
     
-    driveTrainrightFrontTalon = new WPI_TalonSRX(15);
+    driveTrainrightFrontTalon = new WPI_TalonSRX(13);
     driveTrainrightFrontTalon.setInverted(true);
     
-    driveTrainrightRearTalon = new WPI_TalonSRX(13);
-    driveTrainrightRearTalon.setInverted(true);
+    driveTrainrightRearTalon = new WPI_TalonSRX(15);
+    driveTrainrightRearTalon.setInverted(false);
 
     robotDrive41 = new RobotDrive(driveTrainleftFrontTalon, driveTrainleftRearTalon,
         driveTrainrightFrontTalon, driveTrainrightRearTalon);
