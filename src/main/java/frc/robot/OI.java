@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.cargoJoint;
 import frc.robot.commands.closeCompressor;
 import frc.robot.commands.humanPlayer;
+import frc.robot.commands.liftDown;
+import frc.robot.commands.liftUp;
+import frc.robot.commands.liftWheelForward;
 import frc.robot.commands.openCompressor;
 import frc.robot.commands.releaseCargo;
 import frc.robot.commands.releaseHatch;
@@ -36,18 +39,19 @@ public class OI {
     Button button6 = new JoystickButton(logitech,7); // turnOff Cylinder
     Button button7 = new JoystickButton(logitech,8); // turnOn Cylinder
     Button button8 = new JoystickButton(logitech,9); // Start vision
+    Button button9 = new JoystickButton(logitech, 10);
 
 
-
-    button.whileHeld(new cargoJoint());
-    button1.whileHeld(new humanPlayer());
-    button2.whileHeld(new releaseCargo());   
-    button3.whileHeld(new takeCargo());
+    button.whileHeld(new cargoJoint());//VICTOR TEST
+    button1.whileHeld(new humanPlayer());//VICTOR test
+    button2.whileHeld(new releaseCargo()); //sparklar  
+    button3.whileHeld(new takeCargo()); //
     button4.whenPressed(new openCompressor());
-    button5.whenPressed(new closeCompressor());
-    button6.whenPressed(new takeHatch());
-    button7.whenPressed(new releaseHatch());
-    button8.whenPressed(new visionStarter(5));
+    button5.whileHeld(new liftDown());
+    button6.whileHeld(new liftUp());
+    button7.whileHeld(new liftWheelForward());
+    button8.whileHeld(new visionStarter(5));
+    button9.whenPressed(new closeCompressor());
   }
 
   public Joystick getXbox() {

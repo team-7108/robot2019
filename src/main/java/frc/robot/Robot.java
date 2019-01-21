@@ -22,7 +22,7 @@ public class Robot extends TimedRobot {
   // Define subsytems
   public static Cargo m_cargo;
   public static Hatch m_hatch;
-  // public static Climber m_climber;
+  public static Climber m_climber;
   // public static RobotDrive driveTrainRobotDrive41;
   public static DriveTrain m_driveTrain;
   public static Vision vision;
@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
     // Construct Subsytems
     m_cargo = new Cargo();
     m_hatch = new Hatch();
-    // m_climber = new Climber();
+    m_climber = new Climber();
     m_driveTrain = new DriveTrain();
     vision = new Vision();
     // Construct OI

@@ -20,18 +20,13 @@ public class Cargo extends Subsystem {
   // Define variables and actuators here as private:
   // private WPI_VictorSPX cargoAngleController;7
   private WPI_VictorSPX snowBlower;
-  private SpeedController cargoMotor1;
-  private SpeedController cargoMotor2;
+  private SpeedController cargoMotors;
 
   public Cargo() {
     // Construct objects here
     // cargoController = new cargoAngleController(4);
     snowBlower = new WPI_VictorSPX(3);
-    cargoMotor1 = new Spark(11);
-    cargoMotor1.setInverted(false);
-    cargoMotor2 = new Spark(14);
-    cargoMotor2.setInverted(false);
-
+    cargoMotors = new Spark(0);
   }
   @Override
   public void initDefaultCommand() {
@@ -52,20 +47,18 @@ public class Cargo extends Subsystem {
 
   public void releaseCargo() {
     // Releases the cargo
-    cargoMotor1.set(0.5);
-    cargoMotor2.set(0.5);
+    cargoMotors.set(0.5);
+    
   }
 
   public void takeCargo() {
     // Intakes the cargo
-    cargoMotor2.set(-0.5);
-    cargoMotor1.set(-0.5);
-
+    cargoMotors.set(-0.5);
+ 
   }
   public void cargoStop(){
     snowBlower.set(0);
-    cargoMotor1.set(0);
-    cargoMotor2.set(0);
+    cargoMotors.set(0);
   } 
   public void cargoRocketShip(){
     snowBlower.set(-1);

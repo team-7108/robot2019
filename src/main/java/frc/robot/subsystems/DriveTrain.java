@@ -31,17 +31,17 @@ public class DriveTrain extends Subsystem {
     // Construct objects here
     // leftFrontTalon = new WPI_TalonSRX(11);
 
-    driveTrainleftFrontTalon = new WPI_TalonSRX(12);
+    driveTrainleftFrontTalon = new WPI_TalonSRX(16);
     driveTrainleftFrontTalon.setInverted(true);
     
-    driveTrainleftRearTalon = new WPI_TalonSRX(16);
-    driveTrainleftRearTalon.setInverted(false);
+    driveTrainleftRearTalon = new WPI_TalonSRX(11);
+    driveTrainleftRearTalon.setInverted(true);
     
     driveTrainrightFrontTalon = new WPI_TalonSRX(13);
     driveTrainrightFrontTalon.setInverted(true);
     
     driveTrainrightRearTalon = new WPI_TalonSRX(15);
-    driveTrainrightRearTalon.setInverted(false);
+    driveTrainrightRearTalon.setInverted(true);
 
     robotDrive41 = new RobotDrive(driveTrainleftFrontTalon, driveTrainleftRearTalon,
         driveTrainrightFrontTalon, driveTrainrightRearTalon);
@@ -73,7 +73,7 @@ public class DriveTrain extends Subsystem {
     }
     else 
     {
-      robotDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),Robot.m_oi.xbox.getX());
+      robotDrive41.arcadeDrive(Robot.m_oi.logitech.getY(),Robot.m_oi.logitech.getX());
     }
    
     // robotDrive41.isSafetyEnabled();

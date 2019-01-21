@@ -9,17 +9,16 @@ public class Climber extends Subsystem {
 
   // Define variables and actuators here as private:
   // private WPI_VictorSPX rearlegExtender;
-  private WPI_VictorSPX liftMotor1;
+  private WPI_TalonSRX liftMotor1;
   private WPI_TalonSRX liftMotor2;
-  private WPI_TalonSRX liftWheelMotor;
+  private WPI_VictorSPX liftWheelMotor;
 
   public Climber() {
     // Construct objects here
     
-    liftMotor1 = new WPI_VictorSPX(4);
+    liftMotor1 = new WPI_TalonSRX(14);
     liftMotor2 = new WPI_TalonSRX(11);
-    liftWheelMotor = new WPI_TalonSRX(12);
-
+    liftWheelMotor = new WPI_VictorSPX(4);
   }
 
   @Override
