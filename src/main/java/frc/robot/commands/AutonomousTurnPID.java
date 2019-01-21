@@ -19,8 +19,8 @@ public class AutonomousTurnPID extends Command{
     double accuracy=1;
     double error;
     double old_error = error;
-    double kP= 0.072;
-    double kD = 0.018;
+    double kP= 0.0301;
+    double kD = 0.01;
     double power;
     double true_flag;
     
@@ -31,11 +31,13 @@ public class AutonomousTurnPID extends Command{
     }
 
 protected void initialize() {
+       
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
-    {
+    {   
+
         measured_angle= Robot.m_navx.yawValue();
             
             error = target_angle - measured_angle;
@@ -51,7 +53,7 @@ protected void initialize() {
             {
                 power=-1;
             }
-            Robot.m_driveTrain.autonomousTurn(-power);
+            Robot.m_driveTrain.autonomousTurn(power);
             System.out.println("Measured  :"+" " + measured_angle);
             System.out.println("Error  :"+" " + error);
             System.out.println("Power  :"+" " + power);

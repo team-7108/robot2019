@@ -44,8 +44,8 @@ public class Robot extends TimedRobot {
     autoCG = new Autonomous();
     
     Robot.m_hatch.closeCompressor();
-    
-
+    m_navx.ahrs.zeroYaw();
+    m_navx.ahrs.reset();
   }
 
   @Override
@@ -64,10 +64,12 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     Scheduler.getInstance().removeAll();
+System.out.println("basladim kanka allah carpsin");
     autoCG.addSequential(new ForTurnPIDTest());
     autoCG.start();
     Robot.m_navx.ahrs.reset();
     Robot.m_navx.ahrs.zeroYaw();
+    
   }
 
   @Override
@@ -80,12 +82,14 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
 
    // Robot.m_hatch.openCompressor();
-
+    m_navx.ahrs.zeroYaw();
+    m_navx.ahrs.reset();
   }
 
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+  System.out.println(Robot.m_navx.yawValue());  
   }
 
   @Override
