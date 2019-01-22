@@ -20,26 +20,27 @@ import edu.wpi.first.networktables.NetworkTable;
  * Add your docs here.
  */
 public class Vision{
-    NetworkTableEntry visionStarter;
-    NetworkTableEntry angle;
+    public static NetworkTableEntry visionStarter;
+    public static NetworkTableEntry angle;
+    public static boolean buttonFlag;
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("datatable");
-    public static boolean visionTrigger;
+    public static boolean visionTriggerBool;
 
     public Vision() {
-    visionTrigger = false;
+    visionTriggerBool = false;
     angle = table.getEntry("angle");
     visionStarter = table.getEntry("visionTrigger");
-    angle.getNumber(0);
-    visionStarter.setBoolean(visionTrigger);
-    }
-
-    public void visionTrigger(boolean status){
-        visionTrigger = status;
+    angle.getDouble(0);
+    
     }
     public void relayController(int digitalPin){
         DigitalOutput relay;
         relay = new DigitalOutput(digitalPin);
 
+    }
+    public static void trueChanger(){
+        buttonFlag = true;
+        visionStarter.setBoolean(true);
     }
 }

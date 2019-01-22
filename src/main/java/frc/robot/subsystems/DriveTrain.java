@@ -64,6 +64,22 @@ public class DriveTrain extends Subsystem {
     // Put code here to be run every loop
 
   }
+  public void autonomousTurn(double speed) 
+ 	{
+ 		// if speed is - robot goes left, else right
+ 		driveTrainleftFrontTalon.set(-speed);
+ 		driveTrainrightFrontTalon.set(-speed);
+ 		driveTrainleftRearTalon.set(-speed);
+ 		driveTrainrightRearTalon.set(-speed);
+  } 
+  public void autonomousStop() 
+  {
+  // if speed is - robot goes left, else right
+  driveTrainleftFrontTalon.set(0);
+  driveTrainrightFrontTalon.set(0);
+  driveTrainleftRearTalon.set(0);
+  driveTrainrightRearTalon.set(0);
+  }
 
   public void driveBase() {
     // Arcade Drive is defined here
