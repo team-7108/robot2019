@@ -17,7 +17,7 @@ public class Climber extends Subsystem {
     // Construct objects here
     
     liftMotor1 = new WPI_TalonSRX(14);
-    liftMotor2 = new WPI_TalonSRX(11);
+    liftMotor2 = new WPI_TalonSRX(12);
     liftWheelMotor = new WPI_VictorSPX(4);
   }
 
