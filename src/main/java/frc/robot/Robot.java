@@ -1,5 +1,9 @@
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,6 +28,9 @@ public class Robot extends TimedRobot {
   public static Climber m_climber;
   // public static RobotDrive driveTrainRobotDrive41;
   public static DriveTrain m_driveTrain;
+  NetworkTableEntry matchTime;
+  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTable table = inst.getTable("datatable");
 
   @Override
   public void robotInit() {
@@ -74,7 +81,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    
     Scheduler.getInstance().run();
+  
+    matchTime = table.getEntry("tyme");
+    matchTime.setDouble(DriverStation.getInstance().getMatchTime());
+
   }
 
   @Override
