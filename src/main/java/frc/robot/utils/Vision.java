@@ -38,8 +38,8 @@ public class Vision{
     }
 
     public static void trueChanger(Boolean status){
-        // Do we need this?
-        // buttonFlag = status;
+        // Do we need this ? perhaps...
+        buttonFlag = status;
         visionStarter.setBoolean(status);
         relay.set(status);
     }

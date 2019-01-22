@@ -53,7 +53,7 @@ protected void initialize() {
             {
                 power=-1;
             }
-            Robot.m_driveTrain.autonomousTurn(power);
+         // Robot.m_driveTrain.autonomousTurn(power);
             System.out.println("Measured  :"+" " + measured_angle);
             System.out.println("Error  :"+" " + error);
             System.out.println("Power  :"+" " + power);
