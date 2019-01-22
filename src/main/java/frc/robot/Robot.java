@@ -90,7 +90,8 @@ public class Robot extends TimedRobot {
       teleopCG.start();
     }
     */
-    }
+    System.out.println(m_driveTrain.encoderPosition);
+  }
 
   @Override
   public void testPeriodic() {

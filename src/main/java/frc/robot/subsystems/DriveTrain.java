@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -25,6 +27,7 @@ public class DriveTrain extends Subsystem {
   private WPI_TalonSRX driveTrainleftRearTalon;
   private WPI_TalonSRX driveTrainrightFrontTalon;
   private WPI_TalonSRX driveTrainrightRearTalon;
+  public static double encoderPosition;
   private RobotDrive robotDrive41;
 
   public DriveTrain() {
@@ -33,7 +36,9 @@ public class DriveTrain extends Subsystem {
 
     driveTrainleftFrontTalon = new WPI_TalonSRX(16);
     driveTrainleftFrontTalon.setInverted(true);
-    
+    driveTrainleftFrontTalon.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
+    driveTrainleftFrontTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+    encoderPosition = driveTrainleftFrontTalon.getSelectedSensorPosition();
     driveTrainleftRearTalon = new WPI_TalonSRX(11);
     driveTrainleftRearTalon.setInverted(true);
     
