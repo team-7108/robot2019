@@ -26,21 +26,21 @@ public class Vision{
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("datatable");
     public static boolean visionTriggerBool;
+    public static DigitalOutput relay;
 
     public Vision() {
+    relay = new DigitalOutput(0); // this pin needs to be changed
     visionTriggerBool = false;
     angle = table.getEntry("angle");
     visionStarter = table.getEntry("visionTrigger");
     angle.getDouble(0);
     
     }
-    public void relayController(int digitalPin){
-        DigitalOutput relay;
-        relay = new DigitalOutput(digitalPin);
 
-    }
-    public static void trueChanger(){
-        buttonFlag = true;
-        visionStarter.setBoolean(true);
+    public static void trueChanger(Boolean status){
+        // Do we need this?
+        // buttonFlag = status;
+        visionStarter.setBoolean(status);
+        relay.set(status);
     }
 }

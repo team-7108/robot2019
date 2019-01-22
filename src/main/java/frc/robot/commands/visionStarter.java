@@ -21,7 +21,7 @@ public class visionStarter extends Command {
   public visionStarter(Integer _seconds) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-  //  _seconds = _seconds != null ? _seconds : 5;
+    //  _seconds = _seconds != null ? _seconds : 5;
     this.seconds = _seconds;
     
      
@@ -36,8 +36,7 @@ public class visionStarter extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Vision.trueChanger();
-  //  Robot.vision.relayController(0);
+    Vision.trueChanger(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -49,13 +48,15 @@ public class visionStarter extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-     Vision.visionStarter.setBoolean(false);
+    // Vision.visionStarter.setBoolean(false);
+    Vision.trueChanger(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
   
 
