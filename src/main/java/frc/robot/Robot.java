@@ -28,9 +28,9 @@ public class Robot extends TimedRobot {
   public static Climber m_climber;
   // public static RobotDrive driveTrainRobotDrive41;
   public static DriveTrain m_driveTrain;
-  NetworkTableEntry matchTime;
   NetworkTableInstance inst = NetworkTableInstance.getDefault();
   NetworkTable table = inst.getTable("datatable");
+  NetworkTableEntry roboState;
 
   @Override
   public void robotInit() {
@@ -74,8 +74,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
-   // Robot.m_hatch.openCompressor();
+    
+    roboState = table.getEntry("roboState");
+    roboState.setDefaultString("teleop");
+    // Robot.m_hatch.openCompressor();
 
   }
 
@@ -84,10 +86,9 @@ public class Robot extends TimedRobot {
     
     Scheduler.getInstance().run();
   
-    matchTime = table.getEntry("tyme");
-    matchTime.setDouble(DriverStation.getInstance().getMatchTime());
+    
 
-  }
+    }
 
   @Override
   public void testPeriodic() {
