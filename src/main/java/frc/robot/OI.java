@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Soundworks;
 import frc.robot.commands.cargoJoint;
 import frc.robot.commands.closeCompressor;
 import frc.robot.commands.humanPlayer;
@@ -34,6 +35,7 @@ public class OI {
     Button button5 = new JoystickButton(logitech,6); // close Compressor
     Button button6 = new JoystickButton(logitech,7); // turnOff Cylinder
     Button button7 = new JoystickButton(logitech,8); // turnOn Cylinder
+    Button button69 = new JoystickButton(logitech , 10);
 
     button.whileHeld(new cargoJoint());
     button1.whileHeld(new humanPlayer());
@@ -43,6 +45,7 @@ public class OI {
     button5.whenPressed(new closeCompressor());
     button6.whenPressed(new takeHatch());
     button7.whenPressed(new releaseHatch());
+    button69.whenPressed(new Soundworks());
 
   }
 
