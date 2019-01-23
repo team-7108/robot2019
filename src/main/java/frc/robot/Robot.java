@@ -75,14 +75,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    vision.visionStarter.setBoolean(true);
+    // vision.visionStarter.setBoolean(true);
    // Robot.m_hatch.openCompressor();
 
   }
 
   @Override
   public void teleopPeriodic() {
-    Scheduler.getInstance().removeAll();
+    Scheduler.getInstance().run();
    // vision.visionStarter.setBoolean(true);
    /*
     if(vision.buttonFlag == true) {
