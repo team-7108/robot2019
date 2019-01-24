@@ -1,5 +1,8 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrame;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.Autonomous;
@@ -28,7 +31,10 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain;
   public static NavX m_navx;
   public static Vision vision;
-
+  public static double encoderPosition;
+  public static double targetPosition = 500;
+  public static double turSayisi;
+ // public double exampleEnc;
   @Override
   public void robotInit() {
     
@@ -77,7 +83,13 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     // vision.visionStarter.setBoolean(true);
    // Robot.m_hatch.openCompressor();
-
+    //exampleEnc = m_climber.liftMotor1.getSelectedSensorPosition();
+    m_climber.liftMotor1.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
+    m_climber.liftMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+    m_climber.liftMotor1.setSelectedSensorPosition(0);
+    turSayisi = targetPosition/48;
+    
+ 
   }
 
   @Override
@@ -90,7 +102,23 @@ public class Robot extends TimedRobot {
       teleopCG.start();
     }
     */
-    System.out.println(m_driveTrain.encoderPosition);
+    
+    encoderPosition = Robot.m_climber.liftMotor1.getSelectedSensorPosition();
+    System.out.println("Encoder Position   : " + encoderPosition);
+    System.out.println("Tur Sayısı : " + turSayisi);
+    
+    if (encoderPosition <= turSayisi*4100 ){
+      
+      m_climber.liftMotor1.set(0.3);
+      m_climber.liftMotor2.set(0.3);
+    }
+    else {
+      m_climber.liftMotor1.set(0);
+      m_climber.liftMotor2.set(0);
+    }
+
+  
+  
   }
 
   @Override
