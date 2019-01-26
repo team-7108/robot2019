@@ -2,4 +2,4 @@ language: java
 jdk:
 - oraclejdk11
 script:
-- ./gradlew build
+- gradlew build
