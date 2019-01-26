@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
   public static Vision vision;
   public static double encoderPosition;
   public static double targetPosition = 500;
-  public static double turSayisi;
+  public static double rotation;
  // public double exampleEnc;
   @Override
   public void robotInit() {
@@ -87,7 +87,7 @@ public class Robot extends TimedRobot {
     m_climber.liftMotor1.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
     m_climber.liftMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     m_climber.liftMotor1.setSelectedSensorPosition(0);
-    turSayisi = targetPosition/48;
+    rotation = targetPosition/48;
     
  
   }
@@ -105,9 +105,9 @@ public class Robot extends TimedRobot {
     
     encoderPosition = Robot.m_climber.liftMotor1.getSelectedSensorPosition();
     System.out.println("Encoder Position   : " + encoderPosition);
-    System.out.println("Tur Sayısı : " + turSayisi);
+    System.out.println("Rotation Counter : " + rotation);
     
-    if (encoderPosition <= turSayisi*4100 ){
+    if (encoderPosition <= rotation*4100 ){
       
       m_climber.liftMotor1.set(0.3);
       m_climber.liftMotor2.set(0.3);
