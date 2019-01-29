@@ -42,16 +42,16 @@ public class OI {
     Button button9 = new JoystickButton(logitech, 10);
 
 
-    button.whileHeld(new cargoJoint());//VICTOR TEST
-    button1.whileHeld(new humanPlayer());//VICTOR test
+    button.whileHeld(new takeHatch());//VICTOR TEST
+    button1.whileHeld(new releaseHatch());//VICTOR test
     button2.whileHeld(new releaseCargo()); //sparklar  
     button3.whileHeld(new takeCargo()); //
-    button4.whenPressed(new openCompressor());
+    button4.whenPressed(new humanPlayer());
     button5.whileHeld(new liftDown());
-    button6.whileHeld(new liftUp());
-    button7.whileHeld(new liftWheelForward());
+    button6.whileHeld(new closeCompressor());
+    button7.whileHeld(new openCompressor());
     button8.whenPressed(new visionStarter(5));
-    button9.whenPressed(new closeCompressor());
+    button9.whenPressed(new liftUp());
   }
 
   public Joystick getXbox() {
