@@ -37,7 +37,7 @@ public class Soundworks extends Command {
   protected void execute() {
     
     matchTime = table.getEntry("tyme");
-    matchTime.setDouble(DriverStation.getInstance().getMatchTime());
+    matchTime.setDouble(150 - DriverStation.getInstance().getMatchTime());
     tymeButton = table.getEntry("tymeButton");
     tymeButton.setBoolean(true);
     

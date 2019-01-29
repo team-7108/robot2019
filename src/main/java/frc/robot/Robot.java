@@ -53,6 +53,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
+    roboState = table.getEntry("roboState");
+    roboState.setString("no");
   }
 
   @Override
@@ -77,7 +79,7 @@ public class Robot extends TimedRobot {
     
     roboState = table.getEntry("roboState");
     roboState.setDefaultString("teleop");
-    // Robot.m_hatch.openCompressor();
+    m_hatch.openCompressor();
 
   }
 
