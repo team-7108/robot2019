@@ -12,15 +12,13 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class Soundworks extends Command {
   
   
-  NetworkTableInstance inst = NetworkTableInstance.getDefault();
-  NetworkTable table = inst.getTable("datatable");
-  NetworkTableEntry matchTime;
-  NetworkTableEntry tymeButton;
-  public boolean flag;
+
+  public boolean flag = false;
 
   public Soundworks() {
     // Use requires() here to declare subsystem dependencies
@@ -36,23 +34,25 @@ public class Soundworks extends Command {
   @Override
   protected void execute() {
     
-    matchTime = table.getEntry("tyme");
-    matchTime.setDouble(150 - DriverStation.getInstance().getMatchTime());
-    tymeButton = table.getEntry("tymeButton");
-    tymeButton.setBoolean(true);
+    Robot.sound_trigger.soundButton();
+    for(int i=0; i<100; i++)
+    {
+      System.out.println("Executing soundworks");
+    }
+    flag = true;
     
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return tymeButton.getBoolean(false);
+    return flag;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-  tymeButton.setBoolean(false);
+  
   }
 
   // Called when another command which requires one or more of the same

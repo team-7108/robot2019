@@ -22,8 +22,8 @@ public class OI {
 
   public OI() {
 
-    xbox = new Joystick(0);
-    logitech = new Joystick(1);
+    xbox = new Joystick(1);
+    logitech = new Joystick(0);
     // xboxButton1 = new JoystickButton(xbox, 1);
     // xboxButton1.whenPressed(new ReleaseHatch());
 

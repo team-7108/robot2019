@@ -15,6 +15,7 @@ import frc.robot.subsystems.Cargo;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hatch;
+import frc.robot.utils.SoundTrigger;
 
 
 public class Robot extends TimedRobot {
@@ -31,7 +32,9 @@ public class Robot extends TimedRobot {
   NetworkTableInstance inst = NetworkTableInstance.getDefault();
   NetworkTable table = inst.getTable("datatable");
   NetworkTableEntry roboState;
-
+  NetworkTableEntry matchTime;
+  NetworkTableEntry tymeButton;
+  public static SoundTrigger sound_trigger;  
   @Override
   public void robotInit() {
     
@@ -40,7 +43,7 @@ public class Robot extends TimedRobot {
     m_hatch = new Hatch();
     m_climber = new Climber();
     m_driveTrain = new DriveTrain();
-    
+    sound_trigger = new SoundTrigger();
     // Construct OI
     m_oi = new OI();
     
@@ -78,7 +81,8 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     
     roboState = table.getEntry("roboState");
-    roboState.setDefaultString("teleop");
+    roboState.setString("teleop");
+    // matchTime.setDouble(0);
     m_hatch.openCompressor();
 
   }
@@ -88,8 +92,8 @@ public class Robot extends TimedRobot {
     
     Scheduler.getInstance().run();
   
+    // System.out.println(matchTime);
     
-
     }
 
   @Override
