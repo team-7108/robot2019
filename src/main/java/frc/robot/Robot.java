@@ -83,10 +83,10 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     // vision.visionStarter.setBoolean(true);
    // Robot.m_hatch.openCompressor();
-    //exampleEnc = m_climber.liftMotor1.getSelectedSensorPosition();
-    m_climber.liftMotor1.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
-    m_climber.liftMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
-    m_climber.liftMotor1.setSelectedSensorPosition(0);
+    encoderPosition = m_climber.liftMotor1.getSelectedSensorPosition();
+    // m_climber.liftMotor1.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
+    // m_climber.liftMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+    // m_climber.liftMotor1.setSelectedSensorPosition(0);
     turSayisi = targetPosition/48;
     
  
