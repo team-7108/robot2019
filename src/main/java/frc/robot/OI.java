@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Soundworks;
 import frc.robot.commands.cargoJoint;
 import frc.robot.commands.closeCompressor;
 import frc.robot.commands.humanPlayer;
@@ -38,9 +39,7 @@ public class OI {
     Button button5 = new JoystickButton(logitech,6); // close Compressor
     Button button6 = new JoystickButton(logitech,7); // turnOff Cylinder
     Button button7 = new JoystickButton(logitech,8); // turnOn Cylinder
-    Button button8 = new JoystickButton(logitech,9); // Start vision
-    Button button9 = new JoystickButton(logitech, 10);
-
+    Button button69 = new JoystickButton(logitech , 10);
 
     button.whileHeld(new takeHatch());//VICTOR TEST
     button1.whileHeld(new releaseHatch());//VICTOR test
@@ -52,6 +51,7 @@ public class OI {
     button7.whileHeld(new openCompressor());
     button8.whenPressed(new visionStarter(5));
     button9.whenPressed(new liftUp());
+    button69.whenPressed(new Soundworks());
   }
 
   public Joystick getXbox() {
