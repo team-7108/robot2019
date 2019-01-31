@@ -5,6 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,11 +38,13 @@ public class liftUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_climber.stopLeg();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

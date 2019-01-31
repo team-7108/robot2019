@@ -7,11 +7,15 @@ import frc.robot.commands.Soundworks;
 import frc.robot.commands.cargoJoint;
 import frc.robot.commands.closeCompressor;
 import frc.robot.commands.humanPlayer;
+import frc.robot.commands.liftDown;
+import frc.robot.commands.liftUp;
+import frc.robot.commands.liftWheelForward;
 import frc.robot.commands.openCompressor;
 import frc.robot.commands.releaseCargo;
 import frc.robot.commands.releaseHatch;
 import frc.robot.commands.takeCargo;
 import frc.robot.commands.takeHatch;
+import frc.robot.commands.visionStarter;
 
 public class OI {
 
@@ -37,16 +41,17 @@ public class OI {
     Button button7 = new JoystickButton(logitech,8); // turnOn Cylinder
     Button button69 = new JoystickButton(logitech , 10);
 
-    button.whileHeld(new cargoJoint());
-    button1.whileHeld(new humanPlayer());
-    button2.whileHeld(new releaseCargo());   
-    button3.whileHeld(new takeCargo());
-    button4.whenPressed(new openCompressor());
-    button5.whenPressed(new closeCompressor());
-    button6.whenPressed(new takeHatch());
-    button7.whenPressed(new releaseHatch());
+    button.whileHeld(new takeHatch());//VICTOR TEST
+    button1.whileHeld(new releaseHatch());//VICTOR test
+    button2.whileHeld(new releaseCargo()); //sparklar  
+    button3.whileHeld(new takeCargo()); //
+    button4.whenPressed(new humanPlayer());
+    button5.whileHeld(new liftDown());
+    button6.whileHeld(new closeCompressor());
+    button7.whileHeld(new openCompressor());
+    button8.whenPressed(new visionStarter(5));
+    button9.whenPressed(new liftUp());
     button69.whenPressed(new Soundworks());
-
   }
 
   public Joystick getXbox() {

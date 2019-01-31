@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -21,26 +23,27 @@ public class DriveTrain extends Subsystem {
   // Define variables and actuators here as private:
   // private WPI_TalonSRX leftRearTalon;
 
-  private WPI_TalonSRX driveTrainleftFrontTalon;
-  private WPI_TalonSRX driveTrainleftRearTalon;
-  private WPI_TalonSRX driveTrainrightFrontTalon;
-  private WPI_TalonSRX driveTrainrightRearTalon;
+  public WPI_TalonSRX driveTrainleftFrontTalon;
+  public WPI_TalonSRX driveTrainleftRearTalon;
+  public WPI_TalonSRX driveTrainrightFrontTalon;
+  public WPI_TalonSRX driveTrainrightRearTalon;
+  public static double encoderPosition;
   private RobotDrive robotDrive41;
 
   public DriveTrain() {
     // Construct objects here
     // leftFrontTalon = new WPI_TalonSRX(11);
 
-    driveTrainleftFrontTalon = new WPI_TalonSRX(12);
+    driveTrainleftFrontTalon = new WPI_TalonSRX(16);
     driveTrainleftFrontTalon.setInverted(true);
     
-    driveTrainleftRearTalon = new WPI_TalonSRX(16);
+    driveTrainleftRearTalon = new WPI_TalonSRX(11);
     driveTrainleftRearTalon.setInverted(true);
     
-    driveTrainrightFrontTalon = new WPI_TalonSRX(15);
+    driveTrainrightFrontTalon = new WPI_TalonSRX(13);
     driveTrainrightFrontTalon.setInverted(true);
     
-    driveTrainrightRearTalon = new WPI_TalonSRX(13);
+    driveTrainrightRearTalon = new WPI_TalonSRX(15);
     driveTrainrightRearTalon.setInverted(true);
 
     robotDrive41 = new RobotDrive(driveTrainleftFrontTalon, driveTrainleftRearTalon,
@@ -64,6 +67,22 @@ public class DriveTrain extends Subsystem {
     // Put code here to be run every loop
 
   }
+  public void autonomousTurn(double speed) 
+ 	{
+ 		// if speed is - robot goes left, else right
+ 		driveTrainleftFrontTalon.set(-speed);
+ 		driveTrainrightFrontTalon.set(-speed);
+ 		driveTrainleftRearTalon.set(-speed);
+ 		driveTrainrightRearTalon.set(-speed);
+  } 
+  public void autonomousStop() 
+  {
+  // if speed is - robot goes left, else right
+  driveTrainleftFrontTalon.set(0);
+  driveTrainrightFrontTalon.set(0);
+  driveTrainleftRearTalon.set(0);
+  driveTrainrightRearTalon.set(0);
+  }
 
   public void driveBase() {
     // Arcade Drive is defined here
@@ -73,7 +92,7 @@ public class DriveTrain extends Subsystem {
     }
     else 
     {
-      robotDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),Robot.m_oi.xbox.getX());
+      robotDrive41.arcadeDrive(Robot.m_oi.logitech.getY(),Robot.m_oi.logitech.getX());
     }
    
     // robotDrive41.isSafetyEnabled();
