@@ -39,7 +39,9 @@ public class OI {
     Button button5 = new JoystickButton(logitech,6); // close Compressor
     Button button6 = new JoystickButton(logitech,7); // turnOff Cylinder
     Button button7 = new JoystickButton(logitech,8); // turnOn Cylinder
-    Button button69 = new JoystickButton(logitech , 10);
+    Button button8 = new JoystickButton(logitech, 9);
+    Button button9 = new JoystickButton(logitech, 10);
+    Button button10 = new JoystickButton(xbox, 1);
 
     button.whileHeld(new takeHatch());//VICTOR TEST
     button1.whileHeld(new releaseHatch());//VICTOR test
@@ -51,7 +53,7 @@ public class OI {
     button7.whileHeld(new openCompressor());
     button8.whenPressed(new visionStarter(5));
     button9.whenPressed(new liftUp());
-    button69.whenPressed(new Soundworks());
+    button10.whenPressed(new Soundworks());
   }
 
   public Joystick getXbox() {
