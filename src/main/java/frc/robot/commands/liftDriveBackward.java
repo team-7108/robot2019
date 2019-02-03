@@ -10,8 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class liftWheelForward extends Command {
-  public liftWheelForward() {
+
+public class liftDriveBackward extends Command {
+  public liftDriveBackward() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_climber);
@@ -25,7 +26,7 @@ public class liftWheelForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climber.liftWheelForward();
+    Robot.m_climber.liftWheelBackward();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -44,7 +45,6 @@ public class liftWheelForward extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-  end();
+    end();
   }
 }
-

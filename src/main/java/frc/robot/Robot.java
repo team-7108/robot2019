@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -62,6 +63,7 @@ public class Robot extends TimedRobot {
     m_navx = new NavX();
     vision = new Vision();
     teleopCG = new Teleoperated();
+    CameraServer.getInstance().startAutomaticCapture();
     // Construct OI
     m_oi = new OI();
     
@@ -104,16 +106,16 @@ public class Robot extends TimedRobot {
     roboState = table.getEntry("roboState");
     roboState.setString("teleop");
     // matchTime.setDouble(0);
-    m_hatch.openCompressor();
+    // m_hatch.openCompressor();
 
 
     // vision.visionStarter.setBoolean(true);
     // Robot.m_hatch.openCompressor();
     //exampleEnc = m_climber.liftMotor1.getSelectedSensorPosition();
-    m_climber.liftMotor1.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
-    m_climber.liftMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
-    m_climber.liftMotor1.setSelectedSensorPosition(0);
-    rotation = targetPosition/48;
+    // m_climber.liftMotor1.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
+    // m_climber.liftMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
+    // m_climber.liftMotor1.setSelectedSensorPosition(0);
+    // rotation = targetPosition/48;
     
  
 
@@ -151,10 +153,6 @@ public class Robot extends TimedRobot {
       m_climber.liftMotor2.set(0);
     }
     */
-
-  
-  
-  
 
   @Override
   public void testPeriodic() {

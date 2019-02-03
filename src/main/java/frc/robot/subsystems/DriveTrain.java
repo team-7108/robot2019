@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,36 +23,35 @@ public class DriveTrain extends Subsystem {
   // Define variables and actuators here as private:
   // private WPI_TalonSRX leftRearTalon;
 
-  public WPI_TalonSRX driveTrainleftFrontTalon;
-  public WPI_TalonSRX driveTrainleftRearTalon;
-  public WPI_TalonSRX driveTrainrightFrontTalon;
-  public WPI_TalonSRX driveTrainrightRearTalon;
-  public static double encoderPosition;
+  public WPI_TalonSRX driveTrainLeftFrontMotor;
+  public WPI_TalonSRX driveTrainLeftRearMotor;
+  public WPI_VictorSPX driveTrainRightFrontMotor;
+  public WPI_VictorSPX driveTrainRightRearMotor;
   private RobotDrive robotDrive41;
 
   public DriveTrain() {
     // Construct objects here
     // leftFrontTalon = new WPI_TalonSRX(11);
 
-    driveTrainleftFrontTalon = new WPI_TalonSRX(16);
-    driveTrainleftFrontTalon.setInverted(true);
+    driveTrainLeftFrontMotor = new WPI_TalonSRX(16);
+    driveTrainLeftFrontMotor.setInverted(true);
     
-    driveTrainleftRearTalon = new WPI_TalonSRX(11);
-    driveTrainleftRearTalon.setInverted(true);
+    driveTrainLeftRearMotor = new WPI_TalonSRX(13);
+    driveTrainLeftRearMotor.setInverted(true);
     
-    driveTrainrightFrontTalon = new WPI_TalonSRX(13);
-    driveTrainrightFrontTalon.setInverted(true);
+    driveTrainRightFrontMotor = new WPI_VictorSPX(3);
+    driveTrainRightFrontMotor.setInverted(true);
     
-    driveTrainrightRearTalon = new WPI_TalonSRX(15);
-    driveTrainrightRearTalon.setInverted(true);
+    driveTrainRightRearMotor = new WPI_VictorSPX(4);
+    driveTrainRightRearMotor.setInverted(true);
 
-    robotDrive41 = new RobotDrive(driveTrainleftFrontTalon, driveTrainleftRearTalon,
-        driveTrainrightFrontTalon, driveTrainrightRearTalon);
+    robotDrive41 = new RobotDrive(driveTrainLeftFrontMotor, driveTrainLeftRearMotor,
+        driveTrainRightFrontMotor, driveTrainRightRearMotor);
         
-        robotDrive41.setSafetyEnabled(false);
-        robotDrive41.setExpiration(0.1);
-        robotDrive41.setSensitivity(0.5);
-        robotDrive41.setMaxOutput(1.0);
+    robotDrive41.setSafetyEnabled(false);
+    robotDrive41.setExpiration(0.1);
+    robotDrive41.setSensitivity(0.5);
+    robotDrive41.setMaxOutput(1.0);
 
   }
 
@@ -70,25 +69,25 @@ public class DriveTrain extends Subsystem {
   public void autonomousTurn(double speed) 
  	{
  		// if speed is - robot goes left, else right
- 		driveTrainleftFrontTalon.set(-speed);
- 		driveTrainrightFrontTalon.set(-speed);
- 		driveTrainleftRearTalon.set(-speed);
- 		driveTrainrightRearTalon.set(-speed);
+ 		driveTrainLeftFrontMotor.set(-speed);
+ 		driveTrainRightFrontMotor.set(-speed);
+ 		driveTrainLeftRearMotor.set(-speed);
+ 		driveTrainRightRearMotor.set(-speed);
   } 
   public void autonomousStop() 
   {
   // if speed is - robot goes left, else right
-  driveTrainleftFrontTalon.set(0);
-  driveTrainrightFrontTalon.set(0);
-  driveTrainleftRearTalon.set(0);
-  driveTrainrightRearTalon.set(0);
+  driveTrainLeftFrontMotor.set(0);
+  driveTrainRightFrontMotor.set(0);
+  driveTrainLeftRearMotor.set(0);
+  driveTrainRightRearMotor.set(0);
   }
 
   public void driveBase() {
     // Arcade Drive is defined here
     if(RobotState.isAutonomous()) 
     {
-       
+       // Mayy need to delete this query
     }
     else 
     {
@@ -97,6 +96,4 @@ public class DriveTrain extends Subsystem {
    
     // robotDrive41.isSafetyEnabled();
   }
-
-
 }

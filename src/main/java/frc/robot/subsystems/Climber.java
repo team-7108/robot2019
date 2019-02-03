@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
@@ -10,18 +9,21 @@ public class Climber extends Subsystem {
 
   // Define variables and actuators here as private:
   // private WPI_VictorSPX rearlegExtender;
-  public WPI_TalonSRX liftMotor1;
-  public WPI_TalonSRX liftMotor2;
-  private WPI_VictorSPX liftWheelMotor;
+  private WPI_TalonSRX LeftFrontLegExtenderMotor;
+  private WPI_TalonSRX RightFrontLegExtenderMotor;
+  private WPI_TalonSRX FrontLegMotor;
+  private WPI_TalonSRX rearArmExtenderMotor;
 
   public Climber() {
     // Construct objects here
     
-    liftMotor1 = new WPI_TalonSRX(14);
-    liftMotor1.setInverted(false);
-    liftMotor2 = new WPI_TalonSRX(12);
-    liftMotor2.setInverted(true);
-    liftWheelMotor = new WPI_VictorSPX(4);
+    LeftFrontLegExtenderMotor = new WPI_TalonSRX(14);
+    LeftFrontLegExtenderMotor.setInverted(false);
+    RightFrontLegExtenderMotor = new WPI_TalonSRX(12);
+    RightFrontLegExtenderMotor.setInverted(true);
+    FrontLegMotor = new WPI_TalonSRX(15);
+    rearArmExtenderMotor = new WPI_TalonSRX(11);
+
   }
 
   @Override
@@ -37,45 +39,43 @@ public class Climber extends Subsystem {
 
   public void extendLeg() {
     // Extends the leg of climbing mechanism
-    liftMotor1.set(0.5);
-    liftMotor2.set(0.5);
-
+    LeftFrontLegExtenderMotor.set(0.5);
+    RightFrontLegExtenderMotor.set(0.5);
   }
 
   public void retractLeg() {
     // Extends the leg of climbing mechanism
-    
-  
-    liftMotor1.set(-0.5);
-    liftMotor2.set(-0.5);
-    
-
-
-    
+    LeftFrontLegExtenderMotor.set(-0.5);
+    RightFrontLegExtenderMotor.set(-0.5);
   }
 
-  public void stopLeg(){
-
-    liftMotor1.set(0);
-    liftMotor2.set(0);
+  public void stopLeg() {
+    LeftFrontLegExtenderMotor.set(0);
+    RightFrontLegExtenderMotor.set(0);
   }
 
-  public void liftWheelForward(){
-
-    liftWheelMotor.set(0.5);
-
+  public void liftWheelForward() {
+    FrontLegMotor.set(1);
   }
 
-  public void liftWheelRelease(){
-
-    liftWheelMotor.set(-0.5);
-
+  public void liftWheelBackward() {
+    FrontLegMotor.set(-1);
   }
 
-  public void liftWheelStop(){
+  public void liftWheelStop() {
+    FrontLegMotor.set(0);
+  }
 
-    liftWheelMotor.set(0);
-    
+  public void extendArm() {
+    rearArmExtenderMotor.set(0.5);
+  }
+
+  public void retractArm() {
+    rearArmExtenderMotor.set(-0.5);
+  }
+
+  public void stopArm() {
+    rearArmExtenderMotor.set(0);
   }
 
 }
