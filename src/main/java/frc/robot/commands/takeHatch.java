@@ -22,7 +22,7 @@ public class takeHatch extends Command {
     protected void execute() {
 
         Robot.m_hatch.closeCylinder();
-        System.out.println("I am closing the cylinders");
+        // System.out.println("I am closing the cylinders");
         
     }
 

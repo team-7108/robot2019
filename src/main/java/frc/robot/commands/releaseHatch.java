@@ -24,7 +24,7 @@ public class releaseHatch extends Command {
     protected void execute() {
 
         Robot.m_hatch.openCylinder();
-        System.out.println("I am opening the cylinders");
+        // System.out.println("I am opening the cylinders");
         
     }
 

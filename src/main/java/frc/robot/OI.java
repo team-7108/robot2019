@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
 
@@ -11,6 +10,20 @@ public class OI {
   public Joystick xbox;
   public Joystick logitech;
   // public JoystickButton xboxButton1;
+  public JoystickButton button1;
+  public JoystickButton button2;
+  public JoystickButton button3;
+  public JoystickButton button4;
+  public JoystickButton button5;
+  public JoystickButton button6;
+  public JoystickButton button7;
+  public JoystickButton button8;
+  public JoystickButton button9;
+  public JoystickButton button10;
+  public JoystickButton button11;
+  public JoystickButton button12;
+  public JoystickButton button13;
+  public JoystickButton button14;
 
   public OI() {
 
@@ -19,21 +32,21 @@ public class OI {
     // xboxButton1 = new JoystickButton(xbox, 1);
     // xboxButton1.whenPressed(new ReleaseHatch());
 
-    Button button1 = new JoystickButton(logitech, 1); // Cargo Joint Up
-    Button button2 = new JoystickButton(logitech, 2); // Cargo Joint Down 
-    Button button3 = new JoystickButton(logitech, 3); // Release Cargo
-    Button button4 = new JoystickButton(logitech, 4); // Take Cargo
-    Button button5 = new JoystickButton(logitech, 5); // Relesase Hatch
-    Button button6 = new JoystickButton(logitech, 6); // Take Hatch 
-    Button button7 = new JoystickButton(logitech, 7); // Open Compressor
-    Button button8 = new JoystickButton(logitech, 8); // Close Compressor
+    button1 = new JoystickButton(logitech, 1); // Cargo Joint Up
+    button2 = new JoystickButton(logitech, 2); // Cargo Joint Down 
+    button3 = new JoystickButton(logitech, 3); // Release Cargo
+    button4 = new JoystickButton(logitech, 4); // Take Cargo
+    button5 = new JoystickButton(logitech, 5); // Relesase Hatch
+    button6 = new JoystickButton(logitech, 6); // Take Hatch 
+    button7 = new JoystickButton(logitech, 7); // Open Compressor
+    button8 = new JoystickButton(logitech, 8); // Close Compressor
     
-    Button button9  = new JoystickButton(xbox, 1); // Lift Down
-    Button button10 = new JoystickButton(xbox, 2); // Lift Up
-    Button button11 = new JoystickButton(xbox, 3); // Lift Forward
-    Button button12 = new JoystickButton(xbox, 4); // Lift Backward
-    Button button13 = new JoystickButton(xbox, 7); // Extend Arm
-    Button button14 = new JoystickButton(xbox, 8); // Retract Arm
+    button9  = new JoystickButton(xbox, 1); // Lift Down
+    button10 = new JoystickButton(xbox, 2); // Lift Up
+    button11 = new JoystickButton(xbox, 3); // Lift Forward
+    button12 = new JoystickButton(xbox, 4); // Lift Backward
+    button13 = new JoystickButton(xbox, 7); // Extend Arm
+    button14 = new JoystickButton(xbox, 8); // Retract Arm
 
     button1.whileHeld(new cargoJointDown());
     button2.whileHeld(new cargoJointUp());

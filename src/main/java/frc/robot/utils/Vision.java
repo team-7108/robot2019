@@ -9,17 +9,13 @@ package frc.robot.utils;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.NetworkTableValue;
-import edu.wpi.first.networktables.TableEntryListener;
-import edu.wpi.first.vision.VisionRunner.Listener;
 import edu.wpi.first.wpilibj.DigitalOutput;
-import frc.robot.commands.visionStarter;
 import edu.wpi.first.networktables.NetworkTable;
 
 /**
  * Add your docs here.
  */
-public class Vision{
+public class Vision {
     public static NetworkTableEntry visionStarter;
     public static NetworkTableEntry angle;
     public static boolean buttonFlag;

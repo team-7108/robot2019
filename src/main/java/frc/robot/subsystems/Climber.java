@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
+import frc.robot.commands.lift;
 
 public class Climber extends Subsystem {
 
@@ -20,7 +21,7 @@ public class Climber extends Subsystem {
     LeftFrontLegExtenderMotor = new WPI_TalonSRX(14);
     LeftFrontLegExtenderMotor.setInverted(false);
     RightFrontLegExtenderMotor = new WPI_TalonSRX(12);
-    RightFrontLegExtenderMotor.setInverted(true);
+    RightFrontLegExtenderMotor.setInverted(false);
     FrontLegMotor = new WPI_TalonSRX(15);
     rearArmExtenderMotor = new WPI_TalonSRX(11);
 
@@ -28,7 +29,7 @@ public class Climber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
+    Robot.m_climber.setDefaultCommand(new lift());
   }
 
   @Override
@@ -39,19 +40,24 @@ public class Climber extends Subsystem {
 
   public void extendLeg() {
     // Extends the leg of climbing mechanism
-    LeftFrontLegExtenderMotor.set(0.5);
-    RightFrontLegExtenderMotor.set(0.5);
+    LeftFrontLegExtenderMotor.set(0.1);
+    RightFrontLegExtenderMotor.set(0.1);
   }
 
   public void retractLeg() {
     // Extends the leg of climbing mechanism
-    LeftFrontLegExtenderMotor.set(-0.5);
-    RightFrontLegExtenderMotor.set(-0.5);
+    LeftFrontLegExtenderMotor.set(-0.1);
+    RightFrontLegExtenderMotor.set(-0.1);
   }
 
   public void stopLeg() {
     LeftFrontLegExtenderMotor.set(0);
     RightFrontLegExtenderMotor.set(0);
+  }
+
+  public void lifter(double speed) {
+    LeftFrontLegExtenderMotor.set(speed);
+    RightFrontLegExtenderMotor.set(speed);    
   }
 
   public void liftWheelForward() {

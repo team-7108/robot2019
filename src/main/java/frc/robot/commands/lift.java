@@ -10,15 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Soundworks extends Command {
-  
-  
-
-  public boolean flag = false;
-
-  public Soundworks() {
+public class lift extends Command {
+  public lift() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_climber);
   }
 
   // Called just before this Command runs the first time
@@ -29,32 +25,25 @@ public class Soundworks extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    Robot.sound_trigger.soundButton();
-    for(int i=0; i<100; i++)
-    {
-      System.out.println("Executing soundworks");
-    }
-    flag = true;
-    
+    Robot.m_climber.lifter(0.1-Robot.m_oi.xbox.getRawAxis(5));
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return flag;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-  
+    Robot.m_climber.stopLeg();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    
+    end();
   }
 }
