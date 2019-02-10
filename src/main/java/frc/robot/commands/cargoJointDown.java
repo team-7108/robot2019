@@ -7,6 +7,9 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -14,10 +17,16 @@ import frc.robot.Robot;
  * Add your docs here.
  */
 public class cargoJointDown extends Command {
-    public cargoJointDown() {
+
+  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTable table = inst.getTable("datatable");
+  static NetworkTableEntry upSwitch;
+
+  public cargoJointDown() {
       // Use requires() here to declare subsystem dependencies
       // eg. requires(chassis);
       requires(Robot.m_cargo);
+      upSwitch = table.getEntry("upSwitch");
     }
   
     // Called just before this Command runs the first time
@@ -29,6 +38,7 @@ public class cargoJointDown extends Command {
     @Override
     protected void execute() {
         Robot.m_cargo.humanPlayer();
+        upSwitch.setBoolean(false);
     }
   
     // Make this return true when this Command no longer needs to run execute()

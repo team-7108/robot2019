@@ -36,7 +36,9 @@ public class Robot extends TimedRobot {
   NetworkTableEntry roboState;
   NetworkTableEntry matchTime;
   NetworkTableEntry tymeButton;
-  
+  NetworkTableEntry pistonTime;
+  NetworkTableEntry pistonStatus;
+
   public static SoundTrigger sound_trigger;  
   public static NavX m_navx;
   public static Vision vision;
@@ -58,6 +60,8 @@ public class Robot extends TimedRobot {
     vision = new Vision();
     teleopCG = new Teleoperated();
     CameraServer.getInstance().startAutomaticCapture();
+    pistonTime = table.getEntry("pistonTime");
+    pistonStatus = table.getEntry("pistonStatus");
     // Construct OI
     m_oi = new OI();
     
@@ -120,6 +124,8 @@ public class Robot extends TimedRobot {
     
     Scheduler.getInstance().run();
   
+    pistonStatus.setBoolean(m_hatch.ps);
+    pistonTime.setNumber(m_hatch.pt);  
     // System.out.println(matchTime);
     
     }

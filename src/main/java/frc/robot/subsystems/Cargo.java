@@ -8,6 +8,9 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
@@ -28,6 +31,11 @@ public class Cargo extends Subsystem {
   private Counter counterDown;
   public boolean upLimitSwStatus = false;
   public boolean downLimitSwStatus = false;
+  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTable table = inst.getTable("datatable");
+  static NetworkTableEntry upSwitch;
+  static NetworkTableEntry downSwitch;
+  
   public Cargo() {
     // Construct objects here
     // cargoController = new cargoAngleController(4);
@@ -39,13 +47,18 @@ public class Cargo extends Subsystem {
     counterUp = new Counter(limitUp);
     counterDown = new Counter(limitDown);
 
+    upSwitch = table.getEntry("upSwitch");
+    downSwitch = table.getEntry("downSwitch");
+
     if(counterUp.get()>0){
+      upSwitch.setBoolean(true);
       upLimitSwStatus = true;
       counterUp.reset();
       upLimitSwStatus = false;
     }
 
     if(counterDown.get()>0){
+      downSwitch.setBoolean(true);
       downLimitSwStatus = true;
       counterDown.reset();
       downLimitSwStatus = false;
@@ -92,10 +105,10 @@ public class Cargo extends Subsystem {
   }
 
   public void cargoRocketShip(){
-    cargoJointMotor.set(-0.5);
+    cargoJointMotor.set(-1);
   }
    public void humanPlayer() {
-    cargoJointMotor.set(0.5);
+    cargoJointMotor.set(1);
   }
 
 }

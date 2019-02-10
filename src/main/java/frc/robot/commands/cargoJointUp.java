@@ -7,14 +7,26 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+
 public class cargoJointUp extends Command {
-    public cargoJointUp() {
+    
+  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTable table = inst.getTable("datatable");
+  static NetworkTableEntry downSwitch;
+
+  public cargoJointUp() {
+    
       // Use requires() here to declare subsystem dependencies
       // eg. requires(chassis);
       requires(Robot.m_cargo);
+    
+      downSwitch = table.getEntry("downSwitch");
     }
   
     // Called just before this Command runs the first time
@@ -27,6 +39,7 @@ public class cargoJointUp extends Command {
     protected void execute() {    
     
         Robot.m_cargo.cargoRocketShip();
+        downSwitch.setBoolean(false);
   
     }
   

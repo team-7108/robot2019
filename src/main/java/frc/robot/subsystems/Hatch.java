@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,6 +21,11 @@ public class Hatch extends Subsystem {
 
   private Compressor compressor;
   private DoubleSolenoid doubleSolenoid1;
+  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTable table = inst.getTable("datatable");
+  
+  public static int pt;
+  public static boolean ps;
 
   public Hatch() {
     // Construct objects here
@@ -53,15 +61,19 @@ public class Hatch extends Subsystem {
   // Emypties the cylinders
   public void turnOffCylinder() { 
     doubleSolenoid1.set(DoubleSolenoid.Value.kOff);
+    ps = false;
   }
 
   // Opens the cylinders
   public void openCylinder() {
     doubleSolenoid1.set(DoubleSolenoid.Value.kForward);
+    pt = pt + 1;
+    ps = true;
   }
 
   // Closes the cylinders
   public void closeCylinder() {
     doubleSolenoid1.set(DoubleSolenoid.Value.kReverse);
+    ps = false;
   }
 }
