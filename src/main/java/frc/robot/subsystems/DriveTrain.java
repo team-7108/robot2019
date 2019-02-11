@@ -75,24 +75,14 @@ public class DriveTrain extends Subsystem {
   } 
   public void autonomousStop() 
   {
-  // if speed is - robot goes left, else right
-  driveTrainLeftFrontMotor.set(0);
-  driveTrainRightFrontMotor.set(0);
-  driveTrainLeftRearMotor.set(0);
-  driveTrainRightRearMotor.set(0);
+    // if speed is - robot goes left, else right
+    driveTrainLeftFrontMotor.set(0);
+    driveTrainRightFrontMotor.set(0);
+    driveTrainLeftRearMotor.set(0);
+    driveTrainRightRearMotor.set(0);
   }
 
   public void driveBase() {
-    // Arcade Drive is defined here
-    if(RobotState.isAutonomous()) 
-    {
-       // Mayy need to delete this query
-    }
-    else 
-    {
-      robotDrive41.arcadeDrive(Robot.m_oi.logitech.getY(),Robot.m_oi.logitech.getX());
-    }
-   
-    // robotDrive41.isSafetyEnabled();
+    robotDrive41.arcadeDrive(Robot.m_oi.logitech.getY(),Robot.m_oi.logitech.getX());
   }
 }

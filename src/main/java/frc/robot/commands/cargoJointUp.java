@@ -52,14 +52,16 @@ public class cargoJointUp extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-      Robot.m_cargo.cargoJointStop();
+      //Robot.m_cargo.cargoJointMotor.set(-.3);
+      Robot.m_cargo.cargoJointMotor.set(-0.2);
     }
-  
+    
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-        end();
+        Robot.m_cargo.cargoJointMotor.set(0);
+        
     }
   }
   

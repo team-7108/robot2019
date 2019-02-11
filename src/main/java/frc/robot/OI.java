@@ -32,8 +32,8 @@ public class OI {
     // xboxButton1 = new JoystickButton(xbox, 1);
     // xboxButton1.whenPressed(new ReleaseHatch());
 
-    button1 = new JoystickButton(logitech, 1); // Cargo Joint Up
-    button2 = new JoystickButton(logitech, 2); // Cargo Joint Down 
+    button1 = new JoystickButton(logitech, 1); // Cargo Joint Down
+    button2 = new JoystickButton(logitech, 2); // Cargo Joint Up 
     button3 = new JoystickButton(logitech, 3); // Release Cargo
     button4 = new JoystickButton(logitech, 4); // Take Cargo
     button5 = new JoystickButton(logitech, 5); // Relesase Hatch
@@ -48,8 +48,8 @@ public class OI {
     button13 = new JoystickButton(xbox, 7); // Extend Arm
     button14 = new JoystickButton(xbox, 8); // Retract Arm
 
-    button1.whileHeld(new cargoJointDown());
-    button2.whileHeld(new cargoJointUp());
+    button1.whenPressed(new cargoJointDown());
+    button2.whenPressed(new cargoJointUp());
     button3.whileHeld(new releaseCargo());
     button4.whileHeld(new takeCargo());
     button5.whenPressed(new takeHatch());

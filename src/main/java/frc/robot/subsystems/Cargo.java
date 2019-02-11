@@ -22,19 +22,19 @@ public class Cargo extends Subsystem {
 
   // Define variables and actuators here as private:
   // private WPI_VictorSPX cargoAngleController;7
-  private SpeedController cargoJointMotor;
+  public SpeedController cargoJointMotor;
   private SpeedController leftCargoMotor;
   private SpeedController rightCargoMotor;
-  private DigitalInput limitUp;
-  private DigitalInput limitDown;
-  private Counter counterUp;
-  private Counter counterDown;
+  private DigitalInput cargoLimitDown;
+  private DigitalInput cargoLimitUp;
+  private Counter upCounter;
+  private Counter downCounter;
   public boolean upLimitSwStatus = false;
   public boolean downLimitSwStatus = false;
   NetworkTableInstance inst = NetworkTableInstance.getDefault();
   NetworkTable table = inst.getTable("datatable");
-  static NetworkTableEntry upSwitch;
-  static NetworkTableEntry downSwitch;
+  public static NetworkTableEntry upSwitch;
+  public static NetworkTableEntry downSwitch;
   
   public Cargo() {
     // Construct objects here
@@ -42,29 +42,16 @@ public class Cargo extends Subsystem {
     leftCargoMotor  = new Spark(1);
     rightCargoMotor = new Spark(2);
     cargoJointMotor = new Spark(0);
-    limitUp = new DigitalInput(1);
-    limitDown = new DigitalInput(2);
-    counterUp = new Counter(limitUp);
-    counterDown = new Counter(limitDown);
+    cargoLimitUp = new DigitalInput(0);
+    cargoLimitDown = new DigitalInput(1);
+    upCounter = new Counter(cargoLimitUp);
+    downCounter = new Counter(cargoLimitDown);
 
     upSwitch = table.getEntry("upSwitch");
     downSwitch = table.getEntry("downSwitch");
 
-    if(counterUp.get()>0){
-      upSwitch.setBoolean(true);
-      upLimitSwStatus = true;
-      counterUp.reset();
-      upLimitSwStatus = false;
-    }
-
-    if(counterDown.get()>0){
-      downSwitch.setBoolean(true);
-      downLimitSwStatus = true;
-      counterDown.reset();
-      downLimitSwStatus = false;
-    }
-
   }
+
   @Override
   public void initDefaultCommand() {
 
@@ -72,6 +59,25 @@ public class Cargo extends Subsystem {
 
   @Override
   public void periodic() {
+    //System.out.println(cargoLimitUp.get());
+    if(upCounter.get() != 0 ){
+      upLimitSwStatus = true;
+      upCounter.reset();
+    }
+    else{
+      upLimitSwStatus = false;
+      upCounter.reset();
+    }
+
+    if(downCounter.get() != 0){
+      downLimitSwStatus = true;
+      downCounter.reset();
+
+    }
+    else{
+      downLimitSwStatus = false;
+      downCounter.reset();
+    }
 
   }
 
@@ -103,12 +109,13 @@ public class Cargo extends Subsystem {
   public void cargoJointStop() {
     cargoJointMotor.set(0);
   }
-
+  
   public void cargoRocketShip(){
     cargoJointMotor.set(-1);
   }
-   public void humanPlayer() {
-    cargoJointMotor.set(1);
+
+  public void humanPlayer() {
+    cargoJointMotor.set(0.6);
   }
 
 }

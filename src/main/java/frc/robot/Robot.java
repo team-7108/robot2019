@@ -1,6 +1,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -41,12 +43,13 @@ public class Robot extends TimedRobot {
 
   public static SoundTrigger sound_trigger;  
   public static NavX m_navx;
-  public static Vision vision;
+  // public static Vision vision;
   public static double encoderPosition;
   public static double targetPosition = 500;
   public static double rotation;
  // public double exampleEnc;
 
+ 
   @Override
   public void robotInit() {
     
@@ -57,7 +60,7 @@ public class Robot extends TimedRobot {
     m_driveTrain = new DriveTrain();
     sound_trigger = new SoundTrigger();
     m_navx = new NavX();
-    vision = new Vision();
+    // vision = new Vision();
     teleopCG = new Teleoperated();
     CameraServer.getInstance().startAutomaticCapture();
     pistonTime = table.getEntry("pistonTime");
@@ -81,7 +84,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
-    vision.visionStarter.setBoolean(false);
+    // vision.visionStarter.setBoolean(false);
   }
 
   @Override
@@ -124,11 +127,20 @@ public class Robot extends TimedRobot {
     
     Scheduler.getInstance().run();
   
-    pistonStatus.setBoolean(m_hatch.ps);
-    pistonTime.setNumber(m_hatch.pt);  
+    // pistonStatus.setBoolean(m_hatch.ps);
+    // pistonTime.setNumber(m_hatch.pt);  
     // System.out.println(matchTime);
-    
+   
+    // System.out.println(limitSwStatus);
+    /*
+    if(m_cargo.counterDown.get() > 0) {
+      m_cargo.downSwitch.setBoolean(true);
+      m_cargo.downLimitSwStatus = true;
+      m_cargo.counterDown.reset();
+      m_cargo.downLimitSwStatus = false;
     }
+    */
+  }
 
    // vision.visionStarter.setBoolean(true);
    /*
