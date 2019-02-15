@@ -24,6 +24,7 @@ public class OI {
   public JoystickButton button12;
   public JoystickButton button13;
   public JoystickButton button14;
+  public JoystickButton button15;
 
   public OI() {
 
@@ -40,13 +41,15 @@ public class OI {
     button6 = new JoystickButton(logitech, 6); // Take Hatch 
     button7 = new JoystickButton(logitech, 7); // Open Compressor
     button8 = new JoystickButton(logitech, 8); // Close Compressor
-    
+    button15 = new JoystickButton(logitech,9);
+
     button9  = new JoystickButton(xbox, 1); // Lift Down
     button10 = new JoystickButton(xbox, 2); // Lift Up
     button11 = new JoystickButton(xbox, 3); // Lift Forward
     button12 = new JoystickButton(xbox, 4); // Lift Backward
     button13 = new JoystickButton(xbox, 7); // Extend Arm
     button14 = new JoystickButton(xbox, 8); // Retract Arm
+    
 
     button1.whenPressed(new cargoJointDown());
     button2.whenPressed(new cargoJointUp());
@@ -63,6 +66,7 @@ public class OI {
     button12.whileHeld(new liftDriveBackward());
     button13.whileHeld(new extendArm());
     button14.whileHeld(new retractArm());
+    button15.whenPressed(new visionStarter(5));
 
 
   }

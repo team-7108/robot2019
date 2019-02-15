@@ -59,7 +59,8 @@ public class Cargo extends Subsystem {
 
   @Override
   public void periodic() {
-    //System.out.println(cargoLimitUp.get());
+  // System.out.println("Up Limit is :"+cargoLimitUp.get());
+  //  System.out.println("Down Limit is :"+cargoLimitDown.get());
     if(upCounter.get() != 0 ){
       upLimitSwStatus = true;
       upCounter.reset();
@@ -90,14 +91,14 @@ public class Cargo extends Subsystem {
 
   public void releaseCargo() {
     // Releases the cargo
-    leftCargoMotor.set(1);
-    rightCargoMotor.set(1);
+    leftCargoMotor.set(0.5);
+    rightCargoMotor.set(0.5);
   }
 
   public void takeCargo() {
     // Intakes the cargo
-    leftCargoMotor.set(-1);
-    rightCargoMotor.set(-1);
+    leftCargoMotor.set(-0.35);
+    rightCargoMotor.set(-0.35);
  
   }
 
@@ -110,12 +111,12 @@ public class Cargo extends Subsystem {
     cargoJointMotor.set(0);
   }
   
-  public void cargoRocketShip(){
-    cargoJointMotor.set(-1);
+  public void cargoJointUp(){
+    cargoJointMotor.set(1);
   }
 
-  public void humanPlayer() {
-    cargoJointMotor.set(0.6);
+  public void cargoJointDown() {
+    cargoJointMotor.set(-0.6);
   }
 
 }

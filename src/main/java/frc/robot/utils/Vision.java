@@ -25,7 +25,7 @@ public class Vision {
     public static DigitalOutput relay;
 
     public Vision() {
-    relay = new DigitalOutput(0); // this pin needs to be changed
+    relay = new DigitalOutput(8); // this pin needs to be changed
     visionTriggerBool = false;
     angle = table.getEntry("angle");
     visionStarter = table.getEntry("visionTrigger");

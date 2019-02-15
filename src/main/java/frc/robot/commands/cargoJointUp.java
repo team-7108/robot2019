@@ -38,7 +38,7 @@ public class cargoJointUp extends Command {
     @Override
     protected void execute() {    
     
-        Robot.m_cargo.cargoRocketShip();
+        Robot.m_cargo.cargoJointUp();
         downSwitch.setBoolean(false);
   
     }
@@ -53,7 +53,7 @@ public class cargoJointUp extends Command {
     @Override
     protected void end() {
       //Robot.m_cargo.cargoJointMotor.set(-.3);
-      Robot.m_cargo.cargoJointMotor.set(-0.2);
+      Robot.m_cargo.cargoJointMotor.set(0.2);
     }
     
     // Called when another command which requires one or more of the same

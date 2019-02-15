@@ -23,7 +23,6 @@ import frc.robot.utils.Vision;
 
 public class Robot extends TimedRobot {
   Autonomous autoCG;
-  Teleoperated teleopCG;
   // Define OI
   public static OI m_oi;
   // Define subsytems
@@ -43,7 +42,7 @@ public class Robot extends TimedRobot {
 
   public static SoundTrigger sound_trigger;  
   public static NavX m_navx;
-  // public static Vision vision;
+  public static Vision vision;
   public static double encoderPosition;
   public static double targetPosition = 500;
   public static double rotation;
@@ -60,8 +59,7 @@ public class Robot extends TimedRobot {
     m_driveTrain = new DriveTrain();
     sound_trigger = new SoundTrigger();
     m_navx = new NavX();
-    // vision = new Vision();
-    teleopCG = new Teleoperated();
+    vision = new Vision();
     CameraServer.getInstance().startAutomaticCapture();
     pistonTime = table.getEntry("pistonTime");
     pistonStatus = table.getEntry("pistonStatus");
@@ -110,7 +108,7 @@ public class Robot extends TimedRobot {
     // m_hatch.openCompressor();
 
 
-    // vision.visionStarter.setBoolean(true);
+    vision.visionStarter.setBoolean(true);
     // Robot.m_hatch.openCompressor();
     //exampleEnc = m_climber.liftMotor1.getSelectedSensorPosition();
     // m_climber.liftMotor1.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);

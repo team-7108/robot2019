@@ -37,7 +37,7 @@ public class cargoJointDown extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.m_cargo.humanPlayer();
+        Robot.m_cargo.cargoJointDown();
         upSwitch.setBoolean(false);
     }
   
