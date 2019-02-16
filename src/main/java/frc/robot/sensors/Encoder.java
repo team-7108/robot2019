@@ -1,4 +1,62 @@
 package frc.robot.sensors;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrame;
+
+import frc.robot.Robot;
+
 public class Encoder {
+     public static double Left_Encoder_Position;
+     public static double targetPosition = 500;
+     public static double Right_Encoder_Position;
+     public static double Perimeter = 48;
+     // public static double RoundNumber = targetPosition/Perimeter;
+     public static double RoundNumber = 0;
+    public Encoder() {
+        Robot.m_climber.LeftFrontLegExtenderMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
+        Robot.m_climber.LeftFrontLegExtenderMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        Robot.m_climber.LeftFrontLegExtenderMotor.setSelectedSensorPosition(0);
+        
+        Robot.m_driveTrain.driveTrainLeftRearMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
+        Robot.m_driveTrain.driveTrainLeftRearMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        Robot.m_driveTrain.driveTrainLeftRearMotor.setSelectedSensorPosition(0);
+         
+
+    }
+    public static void Left_Encoder_Position(){
+        Left_Encoder_Position = Robot.m_driveTrain.driveTrainLeftRearMotor.getSelectedSensorPosition();
+        
+        System.out.println("Left Encoder Position   : " + Left_Encoder_Position);
+        System.out.println("Left Round Number : " + Left_Encoder_Position/4100);
+        /*
+        if (Left_Encoder_Position <= RoundNumber*4100 ){
+          
+            Robot.m_driveTrain.driveTrainLeftFrontMotor.set(0.3);
+            Robot.m_driveTrain.driveTrainLeftFrontMotor.set(0.3);
+        }
+        else {
+            Robot.m_driveTrain.driveTrainLeftFrontMotor.set(0);
+            Robot.m_driveTrain.driveTrainLeftFrontMotor.set(0);
+        }
+        */
+        
+
+    }
+    public static void Right_Encoder_Position() {
+        
+        Right_Encoder_Position = Robot.m_climber.LeftFrontLegExtenderMotor.getSelectedSensorPosition();
+        System.out.println("Right Encoder Position   : " + Right_Encoder_Position);
+        System.out.println("Right Round Number : " + Right_Encoder_Position/4100);    
+        /*
+        if (Right_Encoder_Position <= RoundNumber*4100 ){
+          
+            Robot.m_driveTrain.driveTrainRightFrontMotor.set(0.3);
+            Robot.m_driveTrain.driveTrainRightFrontMotor.set(0.3);
+        }
+        else {
+            Robot.m_driveTrain.driveTrainRightFrontMotor.set(0);
+            Robot.m_driveTrain.driveTrainRightFrontMotor.set(0);
+        }
+        */
+    }
 }

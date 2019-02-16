@@ -19,8 +19,8 @@ public class AutonomousTurnPID extends Command{
     double accuracy=1;
     double error;
     double old_error = error;
-    double kP= 0.0247;
-    double kD = 0.0149;
+    double kP = 0.053;
+    double kD = 0.003;
     double power;
     double true_flag;
     

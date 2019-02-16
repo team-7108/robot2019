@@ -27,6 +27,8 @@ public class Cargo extends Subsystem {
   private SpeedController rightCargoMotor;
   private DigitalInput cargoLimitDown;
   private DigitalInput cargoLimitUp;
+  public boolean hShifter;
+  public boolean shifterFlag;
   private Counter upCounter;
   private Counter downCounter;
   public boolean upLimitSwStatus = false;
@@ -47,6 +49,9 @@ public class Cargo extends Subsystem {
     upCounter = new Counter(cargoLimitUp);
     downCounter = new Counter(cargoLimitDown);
 
+    hShifter = false;
+
+    
     upSwitch = table.getEntry("upSwitch");
     downSwitch = table.getEntry("downSwitch");
 
@@ -59,8 +64,8 @@ public class Cargo extends Subsystem {
 
   @Override
   public void periodic() {
-  // System.out.println("Up Limit is :"+cargoLimitUp.get());
-  //  System.out.println("Down Limit is :"+cargoLimitDown.get());
+    // System.out.println("Up Limit is :"+cargoLimitUp.get());
+    // System.out.println("Down Limit is :"+cargoLimitDown.get());
     if(upCounter.get() != 0 ){
       upLimitSwStatus = true;
       upCounter.reset();
@@ -91,15 +96,24 @@ public class Cargo extends Subsystem {
 
   public void releaseCargo() {
     // Releases the cargo
-    leftCargoMotor.set(0.5);
-    rightCargoMotor.set(0.5);
+    if(hShifter == false){
+    shifterFlag = false;
+    leftCargoMotor.set(-0.35);
+    rightCargoMotor.set(-0.35);
+    shifterFlag = true;
+    }
+    else{
+      shifterFlag = false;
+      leftCargoMotor.set(-1);
+      rightCargoMotor.set(-1);
+      shifterFlag = true;
+    } 
   }
 
   public void takeCargo() {
     // Intakes the cargo
-    leftCargoMotor.set(-0.35);
-    rightCargoMotor.set(-0.35);
- 
+    leftCargoMotor.set(0.5);
+    rightCargoMotor.set(0.5);
   }
 
   public void cargoStop(){

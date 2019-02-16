@@ -15,8 +15,10 @@ public class liftDriveBackward extends Command {
   public liftDriveBackward() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_climber);
+    //requires(Robot.m_climber);
   }
+    
+  
 
   // Called just before this Command runs the first time
   @Override

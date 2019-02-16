@@ -5,16 +5,22 @@ import frc.robot.Robot;
 
 
 public class releaseHatch extends Command {
+
+    long startTime;
+    int seconds;
     
     public releaseHatch() {
 
         requires(Robot.m_hatch);
+        seconds = 3;
 
     }
 
     @Override
 
     protected void initialize() {
+
+        startTime = System.currentTimeMillis();
 
     }
 
@@ -32,7 +38,7 @@ public class releaseHatch extends Command {
 
     protected boolean isFinished() {
 
-        return false;
+         return (System.currentTimeMillis() - startTime) > (int) (1000d * this.seconds);
 
     }
 
@@ -40,6 +46,7 @@ public class releaseHatch extends Command {
 
     protected void end() {
 
+        Robot.m_hatch.closeCylinder();
         Robot.m_hatch.turnOffCylinder();
 
     }

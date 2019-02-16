@@ -10,64 +10,72 @@ public class OI {
   public Joystick xbox;
   public Joystick logitech;
   // public JoystickButton xboxButton1;
-  public JoystickButton button1;
-  public JoystickButton button2;
-  public JoystickButton button3;
-  public JoystickButton button4;
-  public JoystickButton button5;
-  public JoystickButton button6;
-  public JoystickButton button7;
-  public JoystickButton button8;
-  public JoystickButton button9;
-  public JoystickButton button10;
-  public JoystickButton button11;
-  public JoystickButton button12;
-  public JoystickButton button13;
-  public JoystickButton button14;
-  public JoystickButton button15;
+  public JoystickButton backTurnButton;
+  public JoystickButton forwardTurnButton;
+  public JoystickButton leftTurnButton;
+  public JoystickButton rightTurnButton;
+  public JoystickButton hatchThrowButton;
+  public JoystickButton compressorOpenButton;
+  public JoystickButton compressorCloseButton;
+  public JoystickButton visionTriggerButton;
+  public JoystickButton cargoJointUpButton;
+  public JoystickButton cargoJointDownButton;
+  public JoystickButton cargoIntakeButton;
+  public JoystickButton cargoThrowButton;
+  public JoystickButton liftArmExtendButton;
+  public JoystickButton liftArmRetractButton;
+  public JoystickButton climberMoveForwardButton;
+  public JoystickButton climberMoveBackwardButton;
+  public JoystickButton redlineShifterButton;
+  public JoystickButton liftLockButton;
 
   public OI() {
 
-    xbox = new Joystick(1);
-    logitech = new Joystick(0);
+    xbox = new Joystick(0);
+    logitech = new Joystick(1);
     // xboxButton1 = new JoystickButton(xbox, 1);
-    // xboxButton1.whenPressed(new ReleaseHatch());
+    // xboxButton1.whenPressed(new ReleaseHatch()); 10
 
-    button1 = new JoystickButton(logitech, 1); // Cargo Joint Down
-    button2 = new JoystickButton(logitech, 2); // Cargo Joint Up 
-    button3 = new JoystickButton(logitech, 3); // Release Cargo
-    button4 = new JoystickButton(logitech, 4); // Take Cargo
-    button5 = new JoystickButton(logitech, 5); // Relesase Hatch
-    button6 = new JoystickButton(logitech, 6); // Take Hatch 
-    button7 = new JoystickButton(logitech, 7); // Open Compressor
-    button8 = new JoystickButton(logitech, 8); // Close Compressor
-    button15 = new JoystickButton(logitech,9);
+    backTurnButton = new JoystickButton(xbox , 1); // Turn to 180
+    forwardTurnButton = new JoystickButton(xbox , 4); // Turn to 0
+    leftTurnButton = new JoystickButton(xbox , 3); // Turn to -90
+    rightTurnButton = new JoystickButton(xbox , 2); // Turn to 90
+    hatchThrowButton = new JoystickButton(xbox , 6); // Hatch Throw
+    compressorOpenButton = new JoystickButton(xbox , 7); // Open Compressor
+    compressorCloseButton = new JoystickButton(xbox , 8); // Close Compressor
+    visionTriggerButton = new JoystickButton(xbox , 5); // Trigger Vision 
 
-    button9  = new JoystickButton(xbox, 1); // Lift Down
-    button10 = new JoystickButton(xbox, 2); // Lift Up
-    button11 = new JoystickButton(xbox, 3); // Lift Forward
-    button12 = new JoystickButton(xbox, 4); // Lift Backward
-    button13 = new JoystickButton(xbox, 7); // Extend Arm
-    button14 = new JoystickButton(xbox, 8); // Retract Arm
-    
 
-    button1.whenPressed(new cargoJointDown());
-    button2.whenPressed(new cargoJointUp());
-    button3.whileHeld(new releaseCargo());
-    button4.whileHeld(new takeCargo());
-    button5.whenPressed(new takeHatch());
-    button6.whenPressed(new releaseHatch());
-    button7.whenPressed(new closeCompressor());
-    button8.whenPressed(new openCompressor());
+    cargoJointUpButton = new JoystickButton(logitech , 2); // Cargo Joint Up
+    cargoJointDownButton = new JoystickButton(logitech , 1); // Cargo Joint Down
+    cargoIntakeButton = new JoystickButton(logitech , 3); // Cargo Intake
+    cargoThrowButton = new JoystickButton(logitech , 4); // Cargo Throw
+    liftArmRetractButton =  new JoystickButton(logitech , 7); // Retract Arm
+    liftArmExtendButton = new JoystickButton(logitech , 8); // Extend Arm
+    climberMoveForwardButton = new JoystickButton(logitech, 5); // Snowblower Forward
+    climberMoveBackwardButton = new JoystickButton(logitech, 6); // Snowblower Backward
+    redlineShifterButton = new JoystickButton(logitech , 9); // Redline Shifter
+    liftLockButton = new JoystickButton(logitech, 10);
 
-    button9.whileHeld(new liftDown());
-    button10.whileHeld(new liftUp());
-    button11.whileHeld(new liftDriveForward());
-    button12.whileHeld(new liftDriveBackward());
-    button13.whileHeld(new extendArm());
-    button14.whileHeld(new retractArm());
-    button15.whenPressed(new visionStarter(5));
+    backTurnButton.whenPressed(new AutonomousTurnPID(180));
+    forwardTurnButton.whenPressed(new AutonomousTurnPID(0));
+    leftTurnButton.whileHeld(new AutonomousTurnPID(-90));
+    rightTurnButton.whileHeld(new AutonomousTurnPID(90));
+    hatchThrowButton.whenPressed(new releaseHatch());
+    compressorOpenButton.whenPressed(new openCompressor());
+    compressorCloseButton.whenPressed(new closeCompressor());
+    visionTriggerButton.whenPressed(new visionStarter(5));
 
+    cargoJointUpButton.whenPressed(new cargoJointUp());
+    cargoJointDownButton.whenPressed(new cargoJointDown());
+    cargoIntakeButton.whileHeld(new takeCargo());
+    cargoThrowButton.whileHeld(new releaseCargo());
+    liftArmRetractButton.whileHeld(new retractArm());
+    liftArmExtendButton.whileHeld(new extendArm());
+    climberMoveBackwardButton.whileHeld(new liftDriveBackward());
+    climberMoveForwardButton.whileHeld(new liftDriveForward());
+    redlineShifterButton.whenPressed(new redlineShifter());
+    liftLockButton.whenPressed(new liftLockTrigger());
 
   }
 

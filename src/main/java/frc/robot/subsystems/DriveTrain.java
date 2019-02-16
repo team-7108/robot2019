@@ -83,6 +83,6 @@ public class DriveTrain extends Subsystem {
   }
 
   public void driveBase() {
-    robotDrive41.arcadeDrive(Robot.m_oi.logitech.getY(),Robot.m_oi.logitech.getX());
+    robotDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),Robot.m_oi.xbox.getX());
   }
 }

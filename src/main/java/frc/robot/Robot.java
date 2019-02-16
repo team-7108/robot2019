@@ -3,6 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -18,6 +20,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Hatch;
 import frc.robot.utils.SoundTrigger;
 import frc.robot.utils.Vision;
+import frc.robot.sensors.Encoder;
 
 
 
@@ -39,13 +42,18 @@ public class Robot extends TimedRobot {
   NetworkTableEntry tymeButton;
   NetworkTableEntry pistonTime;
   NetworkTableEntry pistonStatus;
-
+  NetworkTableEntry voltage;
+  NetworkTableEntry speed;
+  NetworkTableEntry cargoShift;
+  
+  public double Tspeed;
   public static SoundTrigger sound_trigger;  
   public static NavX m_navx;
   public static Vision vision;
   public static double encoderPosition;
   public static double targetPosition = 500;
   public static double rotation;
+  public static Encoder encoder;
  // public double exampleEnc;
 
  
@@ -60,12 +68,18 @@ public class Robot extends TimedRobot {
     sound_trigger = new SoundTrigger();
     m_navx = new NavX();
     vision = new Vision();
+    encoder = new Encoder();
     CameraServer.getInstance().startAutomaticCapture();
     pistonTime = table.getEntry("pistonTime");
     pistonStatus = table.getEntry("pistonStatus");
+    voltage = table.getEntry("voltage");
+    autoCG = new Autonomous();
     // Construct OI
     m_oi = new OI();
+    speed = table.getEntry("speed");
+    cargoShift = table.getEntry("shift");
     
+
     Robot.m_hatch.closeCompressor();
   }
 
@@ -96,6 +110,18 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    voltage.setDouble(DriverStation.getInstance().getBatteryVoltage());
+    
+    if (m_oi.getXbox().getY()<0){
+
+      Tspeed = -m_oi.getXbox().getY();
+    
+    }else{
+
+      Tspeed = m_oi.getXbox().getY();
+
+    }
+    speed.setDouble(Tspeed*10);
   }
 
   @Override
@@ -124,7 +150,22 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     
     Scheduler.getInstance().run();
-  
+   // Encoder.Left_Encoder_Position();
+   // Encoder.Right_Encoder_Position();
+
+    voltage.setDouble(DriverStation.getInstance().getBatteryVoltage());
+    cargoShift.setBoolean(m_cargo.hShifter);
+
+    if (m_oi.getXbox().getY()<0){
+
+      Tspeed = -m_oi.getXbox().getY();
+    
+    }else{
+
+      Tspeed = m_oi.getXbox().getY();
+
+    }
+    speed.setDouble(Tspeed*10);
     // pistonStatus.setBoolean(m_hatch.ps);
     // pistonTime.setNumber(m_hatch.pt);  
     // System.out.println(matchTime);
