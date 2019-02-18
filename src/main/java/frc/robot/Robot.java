@@ -54,6 +54,8 @@ public class Robot extends TimedRobot {
   public static double targetPosition = 500;
   public static double rotation;
   public static Encoder encoder;
+  public static double currentAngle;
+  public static double visionAngle;
  // public double exampleEnc;
 
  
@@ -78,13 +80,23 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     speed = table.getEntry("speed");
     cargoShift = table.getEntry("shift");
-    
+    vision.visionStarter.setBoolean(false);    
 
     Robot.m_hatch.closeCompressor();
+    m_navx.zeroYaw();
+
   }
 
   @Override
   public void robotPeriodic() {
+    currentAngle = m_navx.yawValue();
+    visionAngle = vision.angle.getDouble(0);
+    /*
+    System.out.print("Current angle: ");
+    System.out.println(currentAngle);
+    System.out.print("Vision angle: ");
+    System.out.println(visionAngle);
+    */
   }
 
   @Override
@@ -101,9 +113,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    Scheduler.getInstance().removeAll();
-    autoCG.addSequential(new ForTurnPIDTest());
-    autoCG.start();
+    Scheduler.getInstance().run();
+    m_navx.zeroYaw();
+    // Scheduler.getInstance().removeAll();
+    // autoCG.addSequential(new ForTurnPIDTest());
+    // autoCG.start();
 
   }
 
@@ -134,7 +148,7 @@ public class Robot extends TimedRobot {
     // m_hatch.openCompressor();
 
 
-    vision.visionStarter.setBoolean(true);
+    // vision.visionStarter.setBoolean(true);
     // Robot.m_hatch.openCompressor();
     //exampleEnc = m_climber.liftMotor1.getSelectedSensorPosition();
     // m_climber.liftMotor1.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
@@ -152,6 +166,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
    // Encoder.Left_Encoder_Position();
    // Encoder.Right_Encoder_Position();
+   // System.out.println(m_navx.yawValue());
 
     voltage.setDouble(DriverStation.getInstance().getBatteryVoltage());
     cargoShift.setBoolean(m_cargo.hShifter);

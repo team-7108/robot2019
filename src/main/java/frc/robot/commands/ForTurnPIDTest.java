@@ -18,6 +18,8 @@ public class ForTurnPIDTest extends CommandGroup {
 
   public ForTurnPIDTest() {
     this.addSequential(new zeroYaw());
+    this.addSequential(new realAutonomousTurnPID(5));
+    //this.addSequential(new realAutonomousTurnPID(Robot.m_navx.yawValue()+90));
   //  if(Vision.buttonFlag == true) {
    //   this.addSequential(new AutonomousTurnPID(Robot.m_navx.yawValue()+Vision.angle.getDouble(0)));
    // }

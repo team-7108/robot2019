@@ -21,7 +21,7 @@ public class takeHatch extends Command {
 
     protected void execute() {
 
-        Robot.m_hatch.closeCylinder();
+        Robot.m_hatch.openCylinder();
         // System.out.println("I am closing the cylinders");
         
     }
@@ -30,7 +30,7 @@ public class takeHatch extends Command {
 
     protected boolean isFinished() {
 
-        return false;
+        return Robot.m_hatch.ps;
 
     }
 

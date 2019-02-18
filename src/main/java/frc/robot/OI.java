@@ -57,14 +57,14 @@ public class OI {
     redlineShifterButton = new JoystickButton(logitech , 9); // Redline Shifter
     liftLockButton = new JoystickButton(logitech, 10);
 
-    backTurnButton.whenPressed(new AutonomousTurnPID(180));
-    forwardTurnButton.whenPressed(new AutonomousTurnPID(0));
-    leftTurnButton.whileHeld(new AutonomousTurnPID(-90));
-    rightTurnButton.whileHeld(new AutonomousTurnPID(90));
-    hatchThrowButton.whenPressed(new releaseHatch());
+    backTurnButton.whenPressed(new realAutonomousTurnPID(180));
+    forwardTurnButton.whenPressed(new realAutonomousTurnPID(0));
+    leftTurnButton.whenPressed(new realAutonomousTurnPID(270));
+    rightTurnButton.whenPressed(new realAutonomousTurnPID(90));
+    hatchThrowButton.whenPressed(new cyclinderCG());
     compressorOpenButton.whenPressed(new openCompressor());
     compressorCloseButton.whenPressed(new closeCompressor());
-    visionTriggerButton.whenPressed(new visionStarter(5));
+    visionTriggerButton.whenPressed(new VisionCG());
 
     cargoJointUpButton.whenPressed(new cargoJointUp());
     cargoJointDownButton.whenPressed(new cargoJointDown());

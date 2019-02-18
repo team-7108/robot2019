@@ -10,6 +10,7 @@ package frc.robot.utils;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DigitalOutput;
+import frc.robot.commands.AutonomousTurnPID;
 import edu.wpi.first.networktables.NetworkTable;
 
 /**
@@ -31,12 +32,14 @@ public class Vision {
     visionStarter = table.getEntry("visionTrigger");
     angle.getDouble(0);
     
+    
     }
 
     public static void trueChanger(Boolean status){
         // Do we need this ? perhaps...
         buttonFlag = status;
         visionStarter.setBoolean(status);
-        relay.set(status);
+        // System.out.println(status);
+        // relay.set(status);
     }
 }
