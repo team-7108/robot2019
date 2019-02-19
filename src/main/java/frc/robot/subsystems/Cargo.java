@@ -98,8 +98,8 @@ public class Cargo extends Subsystem {
     // Releases the cargo
     if(hShifter == false){
     shifterFlag = false;
-    leftCargoMotor.set(-0.35);
-    rightCargoMotor.set(-0.35);
+    leftCargoMotor.set(-0.43);
+    rightCargoMotor.set(-0.43);
     shifterFlag = true;
     }
     else{

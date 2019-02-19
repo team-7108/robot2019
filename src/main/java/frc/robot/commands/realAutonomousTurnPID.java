@@ -42,14 +42,15 @@ public class realAutonomousTurnPID extends Command {
     }
     angleToTurn = angleDiff+Robot.m_navx.angleValue();
 
-    startTime = System.currentTimeMillis();
+		startTime = System.currentTimeMillis();
+		/*
     System.out.print("Angle Diff: ");
     System.out.println(angleDiff);
     System.out.print("Current yaw: ");
     System.out.println(Robot.m_navx.yawValue());
     System.out.print("Commanded angle: ");
     System.out.println(angle);
-
+		*/
   }
 	protected void execute() {
 		yawAngle = Robot.m_navx.angleValue();

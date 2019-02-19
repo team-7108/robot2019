@@ -2,16 +2,22 @@ package frc.robot.sensors;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
+import java.lang.Math;
 
 import frc.robot.Robot;
 
 public class Encoder {
-     public static double Left_Encoder_Position;
-     public static double targetPosition = 500;
-     public static double Right_Encoder_Position;
-     public static double Perimeter = 48;
-     // public static double RoundNumber = targetPosition/Perimeter;
-     public static double RoundNumber = 0;
+    public static double Left_Encoder_Position;
+    public static double targetPosition = 500;
+    public static double Right_Encoder_Position;
+    public static double Perimeter = 48;
+    // public static double RoundNumber = targetPosition/Perimeter;
+    public static double RoundNumber = 0;
+    public static double encoderValue;
+    public static double encoderRound;
+    public static double encoderPosition;
+    public static double encoderZeroValue;
+
     public Encoder() {
         Robot.m_climber.LeftFrontLegExtenderMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
         Robot.m_climber.LeftFrontLegExtenderMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
@@ -58,5 +64,19 @@ public class Encoder {
             Robot.m_driveTrain.driveTrainRightFrontMotor.set(0);
         }
         */
+    }
+
+    public static double getEncoderPosition() {
+        encoderValue = (Robot.m_climber.LeftFrontLegExtenderMotor.getSelectedSensorPosition()+ Robot.m_driveTrain.driveTrainLeftRearMotor.getSelectedSensorPosition())/2;
+        encoderRound = encoderValue/4100;
+        encoderPosition = encoderRound*2*Math.PI*15.24;
+        return encoderPosition-encoderZeroValue;
+    }
+
+    public static void zeroEncoder() {
+        encoderValue = (Robot.m_climber.LeftFrontLegExtenderMotor.getSelectedSensorPosition()+ Robot.m_driveTrain.driveTrainLeftRearMotor.getSelectedSensorPosition())/2;
+        encoderRound = encoderValue/4100;
+        encoderPosition = encoderRound*2*Math.PI*15.24;
+        encoderZeroValue = encoderPosition;
     }
 }

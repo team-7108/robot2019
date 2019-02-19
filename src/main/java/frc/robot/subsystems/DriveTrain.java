@@ -73,6 +73,14 @@ public class DriveTrain extends Subsystem {
  		driveTrainLeftRearMotor.set(-speed);
  		driveTrainRightRearMotor.set(-speed);
   } 
+  public void autonomousDrive(double speed) 
+  {
+    // if speed is - robot goes left, else right
+    driveTrainLeftFrontMotor.set(speed);
+    driveTrainRightFrontMotor.set(-speed-0.05);
+    driveTrainLeftRearMotor.set(speed);
+    driveTrainRightRearMotor.set(-speed-0.05);
+ } 
   public void autonomousStop() 
   {
     // if speed is - robot goes left, else right

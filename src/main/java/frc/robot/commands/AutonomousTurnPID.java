@@ -34,10 +34,12 @@ public class AutonomousTurnPID extends Command{
     }
 
 protected void initialize() {
+        /*
         System.out.print("Angle to turn:");
         System.out.println(target_angle);
         System.out.print("Angle measured:");
         System.out.println(Robot.vision.angle.getDouble(0));
+        */
         power = 0;
         total_error = 0;
         if(target_angle >= -10 && target_angle <= 10){
@@ -92,7 +94,7 @@ protected void initialize() {
             Robot.m_driveTrain.autonomousTurn(power);
             // System.out.println("Measured  :"+" " + measured_angle);
             // System.out.println("Error  :"+" " + error);
-            System.out.println("Power  :"+" " + power);
+            // System.out.println("Power  :"+" " + power);
             // System.out.println("True Flag  :"+" " + true_flag);
 
             old_error = error;
