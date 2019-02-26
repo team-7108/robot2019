@@ -25,9 +25,9 @@ public class liftLockTrigger extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Before command :" + Robot.m_climber.lockFlag);
+    // System.out.println("Before command :" + Robot.m_climber.lockFlag);
     Robot.m_climber.lockFlag = !Robot.m_climber.lockFlag;
-    System.out.println("After command :" + Robot.m_climber.lockFlag);
+    // System.out.println("After command :" + Robot.m_climber.lockFlag);
   }
 
   // Make this return true when this Command no longer needs to run execute()
