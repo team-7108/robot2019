@@ -12,6 +12,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Hatch extends Subsystem {
@@ -20,7 +21,8 @@ public class Hatch extends Subsystem {
   // private Compressor compressor;
 
   private Compressor compressor;
-  private DoubleSolenoid doubleSolenoid1;
+  private DoubleSolenoid hmExtenderDB; // stands for " Hatch Mechanism Extender Double Solenoid "
+  private DoubleSolenoid hatchGripperDB; // stands for " Hatch Gripper Double Solenoid "
   NetworkTableInstance inst = NetworkTableInstance.getDefault();
   NetworkTable table = inst.getTable("datatable");
   
@@ -34,8 +36,9 @@ public class Hatch extends Subsystem {
     compressor = new Compressor(0);
     addChild("Compressor",compressor);
     
-    doubleSolenoid1 = new DoubleSolenoid(0, 0, 1);
-    addChild("Double Solenoid 1",doubleSolenoid1);
+    hmExtenderDB = new DoubleSolenoid(0, 0, 1);
+    hatchGripperDB = new DoubleSolenoid(0, 2, 3);
+    addChild("Double Solenoid 1",hmExtenderDB);
 
     
 
@@ -59,21 +62,32 @@ public class Hatch extends Subsystem {
   }
 
   // Emypties the cylinders
-  public void turnOffCylinder() { 
-    doubleSolenoid1.set(DoubleSolenoid.Value.kOff);
+  public void freeHM() { 
+    hmExtenderDB.set(DoubleSolenoid.Value.kOff);
+    hatchGripperDB.set(DoubleSolenoid.Value.kOff);
     ps = false;
   }
 
   // Opens the cylinders
-  public void openCylinder() {
-    doubleSolenoid1.set(DoubleSolenoid.Value.kForward);
+  public void extendHM() {
+    hmExtenderDB.set(DoubleSolenoid.Value.kForward);
     pt = pt + 1;
     ps = true;
   }
 
   // Closes the cylinders
-  public void closeCylinder() {
-    doubleSolenoid1.set(DoubleSolenoid.Value.kReverse);
+  public void retractHM() {
+    hmExtenderDB.set(DoubleSolenoid.Value.kReverse);
     ps = false;
+  }
+
+  public void holdHatch(){
+    hatchGripperDB.set(DoubleSolenoid.Value.kForward);
+  }
+  
+  public void releaseHatch(){
+
+    hatchGripperDB.set(DoubleSolenoid.Value.kReverse);
+
   }
 }

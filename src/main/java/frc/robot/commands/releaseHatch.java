@@ -29,7 +29,7 @@ public class releaseHatch extends Command {
 
     protected void execute() {
 
-        Robot.m_hatch.closeCylinder();
+        Robot.m_hatch.releaseHatch();
         // System.out.println("I am opening the cylinders");
         
     }
@@ -38,15 +38,15 @@ public class releaseHatch extends Command {
 
     protected boolean isFinished() {
 
-         return (System.currentTimeMillis() - startTime) > (int) (1000d * this.seconds);
-        // return false;
+        // return (System.currentTimeMillis() - startTime) > (int) (1000d * this.seconds);
+         return false;
     }
 
     @Override
 
     protected void end() {
 
-       Robot.m_hatch.openCylinder();
+       Robot.m_hatch.freeHM();
         // Robot.m_hatch.turnOffCylinder();
 
     }

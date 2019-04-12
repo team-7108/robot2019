@@ -28,6 +28,8 @@ public class OI {
   public JoystickButton climberMoveBackwardButton;
   public JoystickButton redlineShifterButton;
   public JoystickButton liftLockButton;
+  public JoystickButton extendHMButton;
+  public JoystickButton retractHMButton;
 
   public OI() {
 
@@ -35,11 +37,14 @@ public class OI {
     logitech = new Joystick(1);
     // xboxButton1 = new JoystickButton(xbox, 1);
     // xboxButton1.whenPressed(new ReleaseHatch()); 10
-
+    /*
     backTurnButton = new JoystickButton(xbox , 1); // Turn to 180
     forwardTurnButton = new JoystickButton(xbox , 4); // Turn to 0
     leftTurnButton = new JoystickButton(xbox , 3); // Turn to -90
     rightTurnButton = new JoystickButton(xbox , 2); // Turn to 90
+    */
+    backTurnButton = new JoystickButton(xbox , 1); // Extend Hatch Mechanism
+    forwardTurnButton = new JoystickButton(xbox , 4); // Retract Hatch Mechanism
     hatchThrowButton = new JoystickButton(xbox , 6); // Hatch Throw
     compressorOpenButton = new JoystickButton(xbox , 7); // Open Compressor
     compressorCloseButton = new JoystickButton(xbox , 8); // Close Compressor
@@ -57,14 +62,14 @@ public class OI {
     redlineShifterButton = new JoystickButton(logitech , 9); // Redline Shifter
     liftLockButton = new JoystickButton(logitech, 10);
 
-    backTurnButton.whenPressed(new realAutonomousTurnPID(180));
-    forwardTurnButton.whenPressed(new realAutonomousTurnPID(0));
-    leftTurnButton.whenPressed(new realAutonomousTurnPID(270));
-    rightTurnButton.whenPressed(new realAutonomousTurnPID(90));
-    hatchThrowButton.whenPressed(new cyclinderCG());
+    backTurnButton.whenPressed(new extendHM());
+    forwardTurnButton.whenPressed(new retractHM());
+    //leftTurnButton.whenPressed(new realAutonomousTurnPID(270));
+    //rightTurnButton.whenPressed(new realAutonomousTurnPID(90));
+    hatchThrowButton.whenPressed(new takeHatch());
     compressorOpenButton.whenPressed(new openCompressor());
     compressorCloseButton.whenPressed(new closeCompressor());
-    visionTriggerButton.whenPressed(new VisionCG());
+    visionTriggerButton.whenPressed(new releaseHatch());
 
     cargoJointUpButton.whenPressed(new cargoJointUp());
     cargoJointDownButton.whenPressed(new cargoJointDown());

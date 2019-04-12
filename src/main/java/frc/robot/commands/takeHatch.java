@@ -21,7 +21,7 @@ public class takeHatch extends Command {
 
     protected void execute() {
 
-        Robot.m_hatch.openCylinder();
+        Robot.m_hatch.holdHatch();
         // System.out.println("I am closing the cylinders");
         
     }
@@ -38,7 +38,7 @@ public class takeHatch extends Command {
 
     protected void end() {
 
-        Robot.m_hatch.turnOffCylinder();
+        Robot.m_hatch.freeHM();
 
     }
 
